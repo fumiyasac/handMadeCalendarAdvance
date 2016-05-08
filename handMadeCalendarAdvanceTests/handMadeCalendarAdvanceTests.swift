@@ -100,50 +100,53 @@ class handMadeCalendarAdvanceTests: XCTestCase {
     /**
      *
      * ゴールデンウィークの判定のテスト
-     * 該当テストケース1: 2017年
-     * 該当テストケース2: 2019年
-     * 該当テストケース3: 2021年
      *
      */
     func testGoldenWeek() {
 
         var test = CalculateCalendarLogic()
-
-        //2017年の場合のテストケース
-        let a: Bool = test.judgeJapaneseHoliday(2017, month: 5, day: 2, weekdayIndex: Weekday.Tue.rawValue)
-        XCTAssertFalse(a, "2017年5月2日（火曜日）：\(a)")
-        let b: Bool = test.judgeJapaneseHoliday(2017, month: 5, day: 3, weekdayIndex: Weekday.Wed.rawValue)
-        XCTAssertTrue(b, "2017年5月3日（水曜日）：\(b)")
-        let c: Bool = test.judgeJapaneseHoliday(2017, month: 5, day: 4, weekdayIndex: Weekday.Thu.rawValue)
-        XCTAssertTrue(c, "2017年5月4日（木曜日）：\(c)")
-        let d: Bool = test.judgeJapaneseHoliday(2017, month: 5, day: 5, weekdayIndex: Weekday.Fri.rawValue)
-        XCTAssertTrue(d, "2017年5月5日（金曜日）：\(d)")
-        let e: Bool = test.judgeJapaneseHoliday(2017, month: 5, day: 6, weekdayIndex: Weekday.Sat.rawValue)
-        XCTAssertFalse(e, "2017年5月6日（土曜日）：\(e)")
-
-        //2019年の場合のテストケース
-        let f: Bool = test.judgeJapaneseHoliday(2019, month: 5, day: 2, weekdayIndex: Weekday.Thu.rawValue)
-        XCTAssertFalse(f, "2019年5月2日（木曜日）：\(f)")
-        let g: Bool = test.judgeJapaneseHoliday(2019, month: 5, day: 3, weekdayIndex: Weekday.Fri.rawValue)
-        XCTAssertTrue(g, "2019年5月3日（金曜日）：\(g)")
-        let h: Bool = test.judgeJapaneseHoliday(2019, month: 5, day: 4, weekdayIndex: Weekday.Sat.rawValue)
-        XCTAssertTrue(h, "2019年5月4日（土曜日）：\(h)")
-        let i: Bool = test.judgeJapaneseHoliday(2019, month: 5, day: 5, weekdayIndex: Weekday.Sun.rawValue)
-        XCTAssertTrue(i, "2019年5月5日（日曜日）：\(i)")
-        let j: Bool = test.judgeJapaneseHoliday(2019, month: 5, day: 6, weekdayIndex: Weekday.Mon.rawValue)
-        XCTAssertTrue(j, "2019年5月6日（月曜日）：\(j)")
-
-        //2021年の場合のテストケース
-        let k: Bool = test.judgeJapaneseHoliday(2021, month: 5, day: 2, weekdayIndex: Weekday.Sun.rawValue)
-        XCTAssertFalse(k, "2021年5月2日（日曜日）：\(k)")
-        let l: Bool = test.judgeJapaneseHoliday(2021, month: 5, day: 3, weekdayIndex: Weekday.Mon.rawValue)
-        XCTAssertTrue(l, "2021年5月3日（月曜日）：\(l)")
-        let m: Bool = test.judgeJapaneseHoliday(2021, month: 5, day: 4, weekdayIndex: Weekday.Tue.rawValue)
-        XCTAssertTrue(m, "2021年5月4日（火曜日）：\(m)")
-        let n: Bool = test.judgeJapaneseHoliday(2021, month: 5, day: 5, weekdayIndex: Weekday.Wed.rawValue)
-        XCTAssertTrue(n, "2021年5月5日（水曜日）：\(n)")
-        let o: Bool = test.judgeJapaneseHoliday(2021, month: 5, day: 6, weekdayIndex: Weekday.Thu.rawValue)
-        XCTAssertFalse(o, "2021年5月6日（木曜日）：\(o)")
+        
+        let testCases: [(Int,Int,Int,Weekday,Bool)] =
+        [
+            //  2017年
+            (2017, 5, 2, .Tue, false),
+            (2017, 5, 3, .Wed, true ),
+            (2017, 5, 4, .Thu, true ),
+            (2017, 5, 5, .Fri, true ),
+            (2017, 5, 6, .Sat, false),
+            
+            //  2019年
+            (2019, 5, 2, .Thu, false),
+            (2019, 5, 3, .Fri, true ),
+            (2019, 5, 4, .Sat, true ),
+            (2019, 5, 5, .Sun, true ),
+            (2019, 5, 6, .Mon, true ),
+            
+            //  2020年
+            (2020, 5, 2, .Sat, false),
+            (2020, 5, 3, .Sun, true ),
+            (2020, 5, 4, .Mon, true ),
+            (2020, 5, 5, .Tue, true ),
+            (2020, 5, 6, .Wed, true ),
+            (2020, 5, 7, .Thu, false),
+            
+            //  2021年
+            (2021, 5, 2, .Sun, false),
+            (2021, 5, 3, .Mon, true ),
+            (2021, 5, 4, .Tue, true ),
+            (2021, 5, 5, .Wed, true ),
+            (2021, 5, 6, .Thu, false)
+        ]
+        
+        testCases.forEach { year, month, day, weekday, expected in
+            let result = test.judgeJapaneseHoliday(year, month: month, day: day, weekdayIndex: weekday.rawValue)
+            let message = "\(year)年\(month)月\(day)日（\(weekday.longName)）：\(result)"
+            if expected {
+                XCTAssertTrue (result, message)
+            }else{
+                XCTAssertFalse(result, message)
+            }
+        }
     }
 
     /**

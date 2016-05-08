@@ -14,6 +14,26 @@
 
 enum Weekday: Int {
     case Sun, Mon, Tue, Wed, Thu, Fri, Sat
+    
+    var shortName: String {
+        switch self {
+        case .Sun: return "日"
+        case .Mon: return "月"
+        case .Tue: return "火"
+        case .Wed: return "水"
+        case .Thu: return "木"
+        case .Fri: return "金"
+        case .Sat: return "土"
+        }
+    }
+    
+    var mediumName: String {
+        return self.shortName + "曜"
+    }
+    
+    var longName: String {
+        return self.shortName + "曜日"
+    }
 }
 
 struct CalculateCalendarLogic {
@@ -244,15 +264,20 @@ struct CalculateCalendarLogic {
     
     /**
      *
-     * コールデンウィークの振替休日を判定する
+     * ゴールデンウィークの振替休日を判定する
      * 2007年以降で5/6が月・火・水(5/3 or 5/4 or 5/5が日曜日)なら5/6を祝日とする
+     * See also: https://www.bengo4.com/other/1146/1288/n_1412/
      *
      */
     private func getGoldenWeekAlterHoliday(year: Int, weekdayIndex: Int) -> Bool {
+        guard let weekday = Weekday(rawValue: weekdayIndex) else {
+            fatalError("weekdayIndex is invalid.")
+        }
         
-        if ((year > 2006) && (weekdayIndex > 0 && 3 > weekdayIndex)) {
+        switch weekday {
+        case .Mon, .Tue, .Wed where 2007 <= year:
             return true
-        } else {
+        default:
             return false
         }
     }
