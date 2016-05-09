@@ -51,7 +51,7 @@ print("2016年1月1日（金曜日）：\(a)") ==> 2016年1月1日（金曜日�
 
 ### ライセンス
  
-特に使用制限はありませんので、どなた様でもご自由にお使い頂くことができます。
+[MIT](https://github.com/fumiyasac/handMadeCalendarAdvance/blob/master/LICENSE)
 
 ### 更新履歴
 
