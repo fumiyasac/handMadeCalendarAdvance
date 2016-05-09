@@ -40,6 +40,29 @@ enum Weekday: Int {
 
 struct CalculateCalendarLogic {
     
+    private enum SpringAutumn {
+        /// 春分の日
+        case Spring
+        
+        /// 秋分の日
+        case Autumn
+        
+        var constant: Double {
+            switch self {
+            case .Spring: return 20.69115
+            case .Autumn: return 23.09000
+            }
+        }
+        
+        /// 春分の日・秋分の日を計算する
+        /// 参考：http://koyomi8.com/reki_doc/doc_0330.htm
+        func calcDay(year year: Int) -> Int {
+            let x1: Double = Double(year - 2000) * 0.242194
+            let x2: Int = Int(Double(year - 2000) / 4)
+            return Int(constant + x1 - Double(x2))
+        }
+    }
+    
     /**
      *
      * 祝日になる日を判定する
@@ -80,11 +103,15 @@ struct CalculateCalendarLogic {
                 return true
             
             //3月20日 or 21日: 春分の日(計算値によって算出)
-            case (year, 3, day, _) where year > 1948 && day == getSpringDay(year):
+            case (year, 3, day, _)
+                where year > 1948 && day == SpringAutumn.Spring.calcDay(year: year):
+                
                 return true
 
             //春分の日の次が月曜日: 振替休日
-            case (year, 3, day, .Mon) where year > 1948 && day == getSpringDay(year) + 1:
+            case (year, 3, day, .Mon)
+                where year > 1948 && day == SpringAutumn.Spring.calcDay(year: year) + 1:
+                
                 return true
             
             //4月29日: 1949年から1989年までは天皇誕生日、1990年から2006年まではみどりの日、2007年以降は昭和の日
@@ -140,17 +167,21 @@ struct CalculateCalendarLogic {
                 return true
             
             //9月22日 or 23日: 秋分の日(計算値によって算出)
-            case (year, 9, day, _) where year > 1947 && day == getAutumnDay(year: year):
+            case (year, 9, day, _)
+                where year > 1947 && day == SpringAutumn.Autumn.calcDay(year: year):
+                
                 return true
             
             //秋分の日の次が月曜日: 振替休日
-            case (year, 9, day, .Mon) where year > 1947 && day == getAutumnDay(year: year) + 1:
+            case (year, 9, day, .Mon)
+                where year > 1947 && day == SpringAutumn.Autumn.calcDay(year: year) + 1:
+                
                 return true
             
             //シルバーウィークの振替休日である
             case (_, 9, _, _)
                 where oldPeopleDay(year: year) < day
-                    && day < getAutumnDay(year: year)
+                    && day < SpringAutumn.Autumn.calcDay(year: year)
                     && getAlterHolidaySliverWeek(year: year):
                 return true
             
@@ -210,20 +241,6 @@ struct CalculateCalendarLogic {
 
     /**
      *
-     * 春分の日を判定する
-     * 参考：http://koyomi8.com/reki_doc/doc_0330.htm
-     *
-     */
-    private func getSpringDay(year: Int) -> Int {
-        
-        //春分の日の計算値を返却する
-        let x1: Double = Double(year - 2000) * 0.242194
-        let x2: Int = Int(Double(year - 2000) / 4)
-        return Int(20.69115 + x1 - Double(x2))
-    }
-    
-    /**
-     *
      * ゴールデンウィークの振替休日を判定する
      * 2007年以降で5/6が月・火・水(5/3 or 5/4 or 5/5が日曜日)なら5/6を祝日とする
      * See also: https://www.bengo4.com/other/1146/1288/n_1412/
@@ -240,31 +257,12 @@ struct CalculateCalendarLogic {
 
     /**
      *
-     * 秋分の日を判定する
-     * 参考：http://koyomi8.com/reki_doc/doc_0330.htm
-     *
-     */
-    private func getAutumnDay(year year: Int) -> Int {
-        
-        //秋分の日の計算値を返却する
-        let x1: Double = Double(year - 2000) * 0.242194
-        let x2: Int = Int(Double(year - 2000) / 4)
-        return Int(23.09000 + x1 - Double(x2))
-    }
-    
-    /**
-     *
      * シルバーウィークの振替休日を判定する
      * 敬老の日の2日後が秋分の日ならば間に挟まれた期間は国民の休日とする
      *
      */
     private func getAlterHolidaySliverWeek(year year: Int) -> Bool {
-        
-        if getAutumnDay(year: year) - oldPeopleDay(year: year) == 2 {
-            return true
-        } else {
-            return false
-        }
+        return oldPeopleDay(year: year) + 2 == SpringAutumn.Autumn.calcDay(year: year)
     }
     
     /**
