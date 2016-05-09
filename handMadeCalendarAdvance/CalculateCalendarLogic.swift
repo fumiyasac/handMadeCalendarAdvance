@@ -45,53 +45,12 @@ struct CalculateCalendarLogic {
      * 祝日になる日を判定する
      * (引数) year: Int, month: Int, day: Int, weekdayIndex: Int
      * weekdayIndexはWeekdayのenumに該当する値(0...6)が入る
-     *
-     */
-    func judgeJapaneseHoliday(year: Int, month: Int, day: Int, weekdayIndex: Int) -> Bool {
-        guard let weekday = Weekday(rawValue: weekdayIndex) else {
-            fatalError("weekdayIndex is invalid.")
-        }
-        
-        let result: Bool = calculateJapaneseHoliday(year, month: month, day: day, weekdayIndex: weekdayIndex)
-        
-        //祝祭日の判定結果
-        if (result) {
-            
-            return true
-            
-        } else {
-            
-            //ゴールデンウィークの振替休日である
-            if (month == 5 && day == 6 && getGoldenWeekAlterHoliday(year, weekday: weekday)) {
-                
-                return true
-                
-            //シルバーウィークの振替休日である
-            } else if getAutumnDay(year: year) > day && day > oldPeopleDay(year: year)
-                && getAlterHolidaySliverWeek(year: year) {
-                
-                return true
-            
-            //平日である
-            } else {
-                
-                return false
-            }
-            
-        }
-    }
-
-    /**
-     *
-     * 祝日になる日を判定する
-     * (引数) year: Int, month: Int, day: Int, weekdayIndex: Int
-     * weekdayIndexはWeekdayのenumに該当する値(0...6)が入る
      * ※1. カレンダーロジックの参考：http://p-ho.net/index.php?page=2s2
      * ※2. 書き方（タプル）の参考：http://blog.kitoko552.com/entry/2015/06/17/213553
      * ※3. [Swift] 関数における引数/戻り値とタプルの関係：http://dev.classmethod.jp/smartphone/swift-function-tupsle/
      *
      */
-    private func calculateJapaneseHoliday(year: Int, month: Int, day: Int, weekdayIndex: Int) -> Bool {
+    func judgeJapaneseHoliday(year: Int, month: Int, day: Int, weekdayIndex: Int) -> Bool {
         
         guard let weekday = Weekday(rawValue: weekdayIndex) else { fatalError("weekdayIndex is invalid.") }
         
@@ -154,6 +113,10 @@ struct CalculateCalendarLogic {
             case (year, 5, 5, _) where year > 1948:
                 return true
             
+            //ゴールデンウィークの振替休日
+            case (_, 5, 6, _) where getGoldenWeekAlterHoliday(year, weekday: weekday):
+                return true
+            
             //(1).7月20日(1996年から2002年まで)、(2).7月の第3月曜日(2003年から): 海の日
             case (year, 7, 20, _) where year > 1948 && year < 2002: // FIXME: コメントと年の指定のどちらかが間違っている？
                 return true
@@ -182,6 +145,13 @@ struct CalculateCalendarLogic {
             
             //秋分の日の次が月曜日: 振替休日
             case (year, 9, day, .Mon) where year > 1947 && day == getAutumnDay(year: year) + 1:
+                return true
+            
+            //シルバーウィークの振替休日である
+            case (_, 9, _, _)
+                where oldPeopleDay(year: year) < day
+                    && day < getAutumnDay(year: year)
+                    && getAlterHolidaySliverWeek(year: year):
                 return true
             
             //(1).10月10日(1966年から1999年まで)、(2).10月の第2月曜日(2000年から): 体育の日
