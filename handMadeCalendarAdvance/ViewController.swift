@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CalculateCalendarLogic
 
 //カレンダーに関する定数やメソッドを定義した構造体
 struct CalendarSetting {

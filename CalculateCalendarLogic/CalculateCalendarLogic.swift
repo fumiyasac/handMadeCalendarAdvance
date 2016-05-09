@@ -14,7 +14,7 @@ import Foundation
  *
  */
 
-enum Weekday: Int {
+public enum Weekday: Int {
     case Sun, Mon, Tue, Wed, Thu, Fri, Sat
     
     var shortName: String {
@@ -38,7 +38,7 @@ enum Weekday: Int {
     }
 }
 
-struct CalculateCalendarLogic {
+public struct CalculateCalendarLogic {
     
     private enum SpringAutumn {
         /// 春分の日
@@ -63,7 +63,7 @@ struct CalculateCalendarLogic {
         }
     }
     
-    
+    public init() {} // FIXME: static化した後はprivateにする
     
     /**
      *
@@ -75,7 +75,7 @@ struct CalculateCalendarLogic {
      * ※3. [Swift] 関数における引数/戻り値とタプルの関係：http://dev.classmethod.jp/smartphone/swift-function-tupsle/
      *
      */
-    func judgeJapaneseHoliday(year: Int, month: Int, day: Int, weekdayIndex: Int) -> Bool {
+    public func judgeJapaneseHoliday(year: Int, month: Int, day: Int, weekdayIndex: Int) -> Bool {
         
         guard let weekday = Weekday(rawValue: weekdayIndex) else { fatalError("weekdayIndex is invalid.") }
         
