@@ -202,6 +202,27 @@ class handMadeCalendarAdvanceTests: XCTestCase {
         XCTAssertTrue(q, "2032年9月22日（水曜日）：\(q)")
         let r: Bool = test.judgeJapaneseHoliday(2032, month: 9, day: 23, weekdayIndex: Weekday.Thu.rawValue)
         XCTAssertFalse(r, "2032年9月23日（木曜日）：\(r)")
+    
+    /**
+     *
+     * 1回目のチェックで2015/9/22が祝日であると判定できるかどうか？
+     *
+     */
+    func testFirstJudge20160920() {
+        var test = CalculateCalendarLogic()
+        
+        let testCases: [(Int,Int,Int,Weekday,Bool)] = [
+            (2015, 9, 22, .Tue, true),
+            ]
+        testCases.forEach { year, month, day, weekday, expected in
+            let result = test.judgeJapaneseHoliday(year, month: month, day: day, weekdayIndex: weekday.rawValue)
+            let message = "\(year)年\(month)月\(day)日（\(weekday.longName)）：\(result)"
+            if expected {
+                XCTAssertTrue (result, message)
+            }else{
+                XCTAssertFalse(result, message)
+            }
+        }
     }
     
     /**
