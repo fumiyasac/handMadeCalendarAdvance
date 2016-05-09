@@ -173,11 +173,11 @@ public struct CalculateCalendarLogic {
                 return true
             
             //(1).7月20日(1996年から2002年まで)、(2).7月の第3月曜日(2003年から): 海の日
-            case (year, 7, 20, _) where PublicHolidaysLawYear < year && year < 2002: // FIXME: year <= 2002 では？
+            case (year, 7, 20, _) where 1995 < year && year <= 2002:
                 return true
             
             //(2).7月の第3月曜日(2003年から): 海の日
-            case (year, 7, 15...21, .Mon) where year > 2003: // FIXME: 2003 <= year では？
+            case (year, 7, 15...21, .Mon) where 2003 <= year:
                 return true
             
             //8月11日: 2016年から山の日

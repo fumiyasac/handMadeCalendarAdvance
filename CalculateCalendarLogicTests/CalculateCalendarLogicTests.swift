@@ -376,6 +376,44 @@ class CalculateCalendarLogicTests: XCTestCase {
         }
     }
     
+    /**
+     *
+     * 海の日の判定が正しいかのテスト
+     *
+     */
+    func testMarineDay() {
+        let test = CalculateCalendarLogic()
+        
+        let testCases: [(Int,Int,Int,Bool)] = [
+            // 1995年
+            (1995, 7, 20, false),
+            
+            // 1996年
+            (1996, 7, 20, true),
+            
+            // 2002年
+            (2002, 7, 20, true),
+            
+            // 2003年
+            (2003, 7, 20, false), //日曜日ではあるが祝祭日ではない
+            (2003, 7, 21, true),
+            
+            // 2004年
+            (2004, 7, 19, true),
+            (2003, 7, 20, false)
+        ]
+        testCases.forEach { year, month, day, expected in
+            let result = test.judgeJapaneseHoliday(year, month: month, day: day)
+            guard let weekday = Weekday(year: year, month: month, day: day) else { XCTFail() ; return }
+            let message = "\(year)年\(month)月\(day)日（\(weekday.longName)）：\(result)"
+            if expected {
+                XCTAssertTrue (result, message)
+            }else{
+                XCTAssertFalse(result, message)
+            }
+        }
+    }
+    
     func testOldPeopleDay() {
         let testCases: [(year: Int, expectedDay: Int)] = [
             (2005, 19),
