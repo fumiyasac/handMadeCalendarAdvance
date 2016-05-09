@@ -28,7 +28,7 @@ class handMadeCalendarAdvanceTests: XCTestCase {
      */
     func testCurrentYear() {
         
-        var test = CalculateCalendarLogic()
+        let test = CalculateCalendarLogic()
         
         //2016年の場合のテストケース
 
@@ -104,7 +104,7 @@ class handMadeCalendarAdvanceTests: XCTestCase {
      */
     func testGoldenWeek() {
 
-        var test = CalculateCalendarLogic()
+        let test = CalculateCalendarLogic()
         
         let testCases: [(Int,Int,Int,Weekday,Bool)] =
         [
@@ -159,49 +159,51 @@ class handMadeCalendarAdvanceTests: XCTestCase {
      */
     func testSilverWeek() {
 
-        var test = CalculateCalendarLogic()
+        let test = CalculateCalendarLogic()
 
-        //2015年の場合のテストケース
-        let a: Bool = test.judgeJapaneseHoliday(2015, month: 9, day: 19, weekdayIndex: Weekday.Sat.rawValue)
-        XCTAssertFalse(a, "2015年9月19日（土曜日）：\(a)")
-        let b: Bool = test.judgeJapaneseHoliday(2015, month: 9, day: 20, weekdayIndex: Weekday.Sun.rawValue)
-        XCTAssertFalse(b, "2015年9月20日（日曜日）：\(b)")
-        let c: Bool = test.judgeJapaneseHoliday(2015, month: 9, day: 21, weekdayIndex: Weekday.Mon.rawValue)
-        XCTAssertTrue(c, "2015年9月21日（月曜日）：\(c)")
-        let d: Bool = test.judgeJapaneseHoliday(2015, month: 9, day: 22, weekdayIndex: Weekday.Tue.rawValue)
-        XCTAssertTrue(d, "2015年9月22日（火曜日）：\(d)")
-        let e: Bool = test.judgeJapaneseHoliday(2015, month: 9, day: 23, weekdayIndex: Weekday.Wed.rawValue)
-        XCTAssertTrue(e, "2015年9月23日（水曜日）：\(e)")
-        let f: Bool = test.judgeJapaneseHoliday(2015, month: 9, day: 24, weekdayIndex: Weekday.Thu.rawValue)
-        XCTAssertFalse(f, "2015年9月24日（木曜日）：\(f)")
-
-        //2026年の場合のテストケース
-        let g: Bool = test.judgeJapaneseHoliday(2026, month: 9, day: 19, weekdayIndex: Weekday.Sat.rawValue)
-        XCTAssertFalse(g, "2026年9月19日（土曜日）：\(g)")
-        let h: Bool = test.judgeJapaneseHoliday(2026, month: 9, day: 20, weekdayIndex: Weekday.Sun.rawValue)
-        XCTAssertFalse(h, "2026年9月20日（日曜日）：\(h)")
-        let i: Bool = test.judgeJapaneseHoliday(2026, month: 9, day: 21, weekdayIndex: Weekday.Mon.rawValue)
-        XCTAssertTrue(i, "2026年9月21日（月曜日）：\(i)")
-        let j: Bool = test.judgeJapaneseHoliday(2026, month: 9, day: 22, weekdayIndex: Weekday.Tue.rawValue)
-        XCTAssertTrue(j, "2026年9月22日（火曜日）：\(j)")
-        let k: Bool = test.judgeJapaneseHoliday(2026, month: 9, day: 23, weekdayIndex: Weekday.Wed.rawValue)
-        XCTAssertTrue(k, "2026年9月23日（水曜日）：\(k)")
-        let l: Bool = test.judgeJapaneseHoliday(2026, month: 9, day: 24, weekdayIndex: Weekday.Thu.rawValue)
-        XCTAssertFalse(l, "2026年9月24日（木曜日）：\(l)")
-
-        //2032年の場合のテストケース
-        let m: Bool = test.judgeJapaneseHoliday(2032, month: 9, day: 18, weekdayIndex: Weekday.Sat.rawValue)
-        XCTAssertFalse(m, "2032年9月18日（土曜日）：\(m)")
-        let n: Bool = test.judgeJapaneseHoliday(2032, month: 9, day: 19, weekdayIndex: Weekday.Sun.rawValue)
-        XCTAssertFalse(n, "2032年9月19日（日曜日）：\(n)")
-        let o: Bool = test.judgeJapaneseHoliday(2032, month: 9, day: 20, weekdayIndex: Weekday.Mon.rawValue)
-        XCTAssertTrue(o, "2032年9月20日（月曜日）：\(o)")
-        let p: Bool = test.judgeJapaneseHoliday(2032, month: 9, day: 21, weekdayIndex: Weekday.Tue.rawValue)
-        XCTAssertTrue(p, "2032年9月21日（火曜日）：\(p)")
-        let q: Bool = test.judgeJapaneseHoliday(2032, month: 9, day: 22, weekdayIndex: Weekday.Wed.rawValue)
-        XCTAssertTrue(q, "2032年9月22日（水曜日）：\(q)")
-        let r: Bool = test.judgeJapaneseHoliday(2032, month: 9, day: 23, weekdayIndex: Weekday.Thu.rawValue)
-        XCTAssertFalse(r, "2032年9月23日（木曜日）：\(r)")
+        let testCases: [(Int,Int,Int,Weekday,Bool)] = [
+            // 2015年
+            (2015, 9, 19, .Sat, false),
+            (2015, 9, 20, .Sun, false),
+            (2015, 9, 21, .Mon, true),
+            (2015, 9, 22, .Tue, true),
+            (2015, 9, 23, .Wed, true),
+            (2015, 9, 24, .Thu, false),
+            
+            // 2016年
+            (2016, 9, 19, .Mon, true),
+            (2016, 9, 20, .Tue, false),
+            (2016, 9, 21, .Wed, false),
+            (2016, 9, 22, .Thu, true),
+            (2016, 9, 23, .Fri, false),
+            (2016, 9, 24, .Sat, false),
+            
+            // 2026年
+            (2026, 9, 19, .Sat, false),
+            (2026, 9, 20, .Sun, false),
+            (2026, 9, 21, .Mon, true),
+            (2026, 9, 22, .Tue, true),
+            (2026, 9, 23, .Wed, true),
+            (2026, 9, 24, .Thu, false),
+            
+            // 2032年
+            (2032, 9, 18, .Sat, false),
+            (2032, 9, 19, .Sun, false),
+            (2032, 9, 20, .Mon, true),
+            (2032, 9, 21, .Tue, true),
+            (2032, 9, 22, .Wed, true),
+            (2032, 9, 23, .Thu, false),
+        ]
+        testCases.forEach { year, month, day, weekday, expected in
+            let result = test.judgeJapaneseHoliday(year, month: month, day: day, weekdayIndex: weekday.rawValue)
+            let message = "\(year)年\(month)月\(day)日（\(weekday.longName)）：\(result)"
+            if expected {
+                XCTAssertTrue (result, message)
+            }else{
+                XCTAssertFalse(result, message)
+            }
+        }
+    }
     
     /**
      *
@@ -209,7 +211,7 @@ class handMadeCalendarAdvanceTests: XCTestCase {
      *
      */
     func testFirstJudge20160920() {
-        var test = CalculateCalendarLogic()
+        let test = CalculateCalendarLogic()
         
         let testCases: [(Int,Int,Int,Weekday,Bool)] = [
             (2015, 9, 22, .Tue, true),
@@ -234,7 +236,7 @@ class handMadeCalendarAdvanceTests: XCTestCase {
      */
     func testShunbunAndShubun() {
 
-        var test = CalculateCalendarLogic()
+        let test = CalculateCalendarLogic()
 
         //2000年
         let a0: Bool = test.judgeJapaneseHoliday(2000, month: 3, day: 20, weekdayIndex: Weekday.Mon.rawValue)
@@ -423,13 +425,33 @@ class handMadeCalendarAdvanceTests: XCTestCase {
         XCTAssertTrue(e3, "2030年9月23日（月曜日）：\(e3)")
     }
     
-    /*
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
+    func testOldPeopleDay() {
+        let testCases: [(year: Int, expectedDay: Int)] = [
+            (2005, 19),
+            (2006, 18),
+            (2007, 17),
+            (2008, 15),
+            (2009, 21),
+            (2010, 20),
+            (2011, 19),
+            (2012, 17),
+            (2013, 16),
+            (2014, 15),
+            (2015, 21),
+            (2016, 19),
+            (2017, 18),
+            (2018, 17),
+            (2019, 16),
+            (2020, 21),
+        ]
+        
+        testCases.forEach { year, expectedDay in
+            // プロパティを確実に初期状態に戻してテストするため、このタイミングで毎回インスタンス化する
+            let test = CalculateCalendarLogic()
+            
+            let result = test.oldPeopleDay(year: year)
+            let message = "\(year)年：\(result)日"
+            XCTAssertEqual(result, expectedDay, message)
         }
     }
-    */
-    
 }

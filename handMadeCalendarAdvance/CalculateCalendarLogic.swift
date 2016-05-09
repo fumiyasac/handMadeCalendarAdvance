@@ -6,6 +6,8 @@
 //  Copyright © 2016年 just1factory. All rights reserved.
 //
 
+import Foundation
+
 /**
  *
  * カレンダーの日にちを取得してそれが祝祭日なのかを判別するための構造体
@@ -28,25 +30,15 @@ enum Weekday: Int {
     }
     
     var mediumName: String {
-        return self.shortName + "曜"
+        return shortName + "曜"
     }
     
     var longName: String {
-        return self.shortName + "曜日"
+        return shortName + "曜日"
     }
 }
 
 struct CalculateCalendarLogic {
-    
-    /**
-     *
-     * シルバーウィーク判定用のメンバ変数
-     * ・silvarDay → 敬老の日
-     * ・shubunDay → 秋分の日
-     *
-     */
-    var silvarDay: Int = 0
-    var shubunDay: Int = 0
     
     /**
      *
@@ -55,12 +47,12 @@ struct CalculateCalendarLogic {
      * weekdayIndexはWeekdayのenumに該当する値(0...6)が入る
      *
      */
-    mutating func judgeJapaneseHoliday(year: Int, month: Int, day: Int, weekdayIndex: Int) -> Bool {
+    func judgeJapaneseHoliday(year: Int, month: Int, day: Int, weekdayIndex: Int) -> Bool {
         guard let weekday = Weekday(rawValue: weekdayIndex) else {
             fatalError("weekdayIndex is invalid.")
         }
         
-        let result: Bool = self.calculateJapaneseHoliday(year, month: month, day: day, weekdayIndex: weekdayIndex)
+        let result: Bool = calculateJapaneseHoliday(year, month: month, day: day, weekdayIndex: weekdayIndex)
         
         //祝祭日の判定結果
         if (result) {
@@ -70,12 +62,13 @@ struct CalculateCalendarLogic {
         } else {
             
             //ゴールデンウィークの振替休日である
-            if (month == 5 && day == 6 && self.getGoldenWeekAlterHoliday(year, weekday: weekday)) {
+            if (month == 5 && day == 6 && getGoldenWeekAlterHoliday(year, weekday: weekday)) {
                 
                 return true
                 
             //シルバーウィークの振替休日である
-            } else if ((shubunDay > day && day > silvarDay) && self.getAlterHolidaySliverWeek()) {
+            } else if getAutumnDay(year: year) > day && day > oldPeopleDay(year: year)
+                && getAlterHolidaySliverWeek(year: year) {
                 
                 return true
             
@@ -98,7 +91,7 @@ struct CalculateCalendarLogic {
      * ※3. [Swift] 関数における引数/戻り値とタプルの関係：http://dev.classmethod.jp/smartphone/swift-function-tupsle/
      *
      */
-    private mutating func calculateJapaneseHoliday(year: Int, month: Int, day: Int, weekdayIndex: Int) -> Bool {
+    private func calculateJapaneseHoliday(year: Int, month: Int, day: Int, weekdayIndex: Int) -> Bool {
         
         guard let weekday = Weekday(rawValue: weekdayIndex) else { fatalError("weekdayIndex is invalid.") }
         
@@ -128,11 +121,11 @@ struct CalculateCalendarLogic {
                 return true
             
             //3月20日 or 21日: 春分の日(計算値によって算出)
-            case (year, 3, day, _) where year > 1948 && day == self.getSpringDay(year):
+            case (year, 3, day, _) where year > 1948 && day == getSpringDay(year):
                 return true
 
             //春分の日の次が月曜日: 振替休日
-            case (year, 3, day, .Mon) where year > 1948 && day == self.getSpringDay(year) + 1:
+            case (year, 3, day, .Mon) where year > 1948 && day == getSpringDay(year) + 1:
                 return true
             
             //4月29日: 1949年から1989年までは天皇誕生日、1990年から2006年まではみどりの日、2007年以降は昭和の日
@@ -181,18 +174,14 @@ struct CalculateCalendarLogic {
                 return true
             
             case (year, 9, 15...21, .Mon) where year > 2002:
-                
-                //敬老の日の判定タイミングで秋分の日の日付を取得
-                silvarDay = day
-                shubunDay = self.getAutumnDay(year)
                 return true
             
             //9月22日 or 23日: 秋分の日(計算値によって算出)
-            case (year, 9, day, _) where year > 1947 && day == self.getAutumnDay(year):
+            case (year, 9, day, _) where year > 1947 && day == getAutumnDay(year: year):
                 return true
             
             //秋分の日の次が月曜日: 振替休日
-            case (year, 9, day, .Mon) where year > 1947 && day == self.getAutumnDay(year) + 1:
+            case (year, 9, day, .Mon) where year > 1947 && day == getAutumnDay(year: year) + 1:
                 return true
             
             //(1).10月10日(1966年から1999年まで)、(2).10月の第2月曜日(2000年から): 体育の日
@@ -285,7 +274,7 @@ struct CalculateCalendarLogic {
      * 参考：http://koyomi8.com/reki_doc/doc_0330.htm
      *
      */
-    private func getAutumnDay(year: Int) -> Int {
+    private func getAutumnDay(year year: Int) -> Int {
         
         //秋分の日の計算値を返却する
         let x1: Double = Double(year - 2000) * 0.242194
@@ -299,13 +288,40 @@ struct CalculateCalendarLogic {
      * 敬老の日の2日後が秋分の日ならば間に挟まれた期間は国民の休日とする
      *
      */
-    private func getAlterHolidaySliverWeek() -> Bool {
+    private func getAlterHolidaySliverWeek(year year: Int) -> Bool {
         
-        if (shubunDay - silvarDay == 2) {
+        if getAutumnDay(year: year) - oldPeopleDay(year: year) == 2 {
             return true
         } else {
             return false
         }
     }
     
+    /**
+     * 指定した年の敬老の日を調べる
+     */
+    internal func oldPeopleDay(year year: Int) -> Int {
+        let cal = NSCalendar.currentCalendar()
+        
+        func dateFromDay(day day: Int) -> NSDate? {
+            let AD = 1 // 紀元後
+            return cal.dateWithEra(AD, year: year, month: 9, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)
+        }
+        
+        func weekdayAndDayFromDate(date date: NSDate) -> (weekday: Int, day: Int) {
+            return (
+                weekday: cal.component(.Weekday, fromDate: date),
+                day:     cal.component(.Day, fromDate: date)
+            )
+        }
+        
+        let monday = 2
+        return (15...21)
+            .map(dateFromDay)
+            .flatMap{ $0 }
+            .map(weekdayAndDayFromDate)
+            .filter{ $0.weekday == monday }
+            .first!
+            .day
+    }
 }
