@@ -8,15 +8,24 @@
 
 import Foundation
 
+private let AD = 1 // 紀元後
+
 /**
  *
  * カレンダーの日にちを取得してそれが祝祭日なのかを判別するための構造体
  *
  */
 
-enum Weekday: Int {
+public enum Weekday: Int {
     case Sun, Mon, Tue, Wed, Thu, Fri, Sat
-    
+
+    init?(year: Int, month: Int, day: Int) {
+        let cal = NSCalendar.currentCalendar()
+        guard let date = cal.dateWithEra(AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) else { return nil }
+        let weekdayNum = cal.component(.Weekday, fromDate: date)  // 1:日曜日 ～ 7:土曜日
+        self.init(rawValue: weekdayNum - 1)
+    }
+
     var shortName: String {
         switch self {
         case .Sun: return "日"
@@ -38,7 +47,7 @@ enum Weekday: Int {
     }
 }
 
-struct CalculateCalendarLogic {
+public struct CalculateCalendarLogic {
     
     private enum SpringAutumn {
         /// 春分の日
@@ -63,7 +72,7 @@ struct CalculateCalendarLogic {
         }
     }
     
-    
+    public init() {} // FIXME: static化した後はprivateにする
     
     /**
      *
@@ -75,9 +84,16 @@ struct CalculateCalendarLogic {
      * ※3. [Swift] 関数における引数/戻り値とタプルの関係：http://dev.classmethod.jp/smartphone/swift-function-tupsle/
      *
      */
-    func judgeJapaneseHoliday(year: Int, month: Int, day: Int, weekdayIndex: Int) -> Bool {
+    public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
         
-        guard let weekday = Weekday(rawValue: weekdayIndex) else { fatalError("weekdayIndex is invalid.") }
+        let cal = NSCalendar.currentCalendar()
+        guard let date = cal.dateWithEra(
+            AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) else {
+            fatalError() // FIXME: throwにしたほうがよい？
+        }
+        let weekdayNum = cal.component(.Weekday, fromDate: date) // 1:日曜日 ～ 7:土曜日
+        
+        guard let weekday = Weekday(rawValue: weekdayNum - 1) else { fatalError("weekdayIndex is invalid.") }
         
         /// 国民の祝日に関する法律（こくみんのしゅくじつにかんするほうりつ）は、
         /// 1948年（昭和23年）7月20日に公布・即日施行された日本の法律である。通称祝日法。
@@ -137,7 +153,12 @@ struct CalculateCalendarLogic {
             case (year, 5, 4, .Mon) where year < 1988:
                 return true
 
-            case (1988...2006, 5, 4, _) where weekdayIndex > 1:
+            case (1988...2006, 5, 4, .Tue),
+                 (1988...2006, 5, 4, .Wed),
+                 (1988...2006, 5, 4, .Thu),
+                 (1988...2006, 5, 4, .Fri),
+                 (1988...2006, 5, 4, .Sat):
+                
                 return true
 
             case (year, 5, 4, _) where year > 2006:
@@ -280,7 +301,6 @@ struct CalculateCalendarLogic {
         let cal = NSCalendar.currentCalendar()
         
         func dateFromDay(day day: Int) -> NSDate? {
-            let AD = 1 // 紀元後
             return cal.dateWithEra(AD, year: year, month: 9, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)
         }
         

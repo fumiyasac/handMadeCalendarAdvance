@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CalculateCalendarLogic
 
 //カレンダーに関する定数やメソッドを定義した構造体
 struct CalendarSetting {
@@ -257,8 +258,7 @@ extension ViewController: UICollectionViewDataSource {
 
                 if isCellUsing(indexPath.row) {
 
-                    let weekday = indexPath.row % 7
-                    let holiday: Bool = holidayObj.judgeJapaneseHoliday(targetYear, month: targetMonth, day: Int(day!)!, weekdayIndex: weekday)
+                    let holiday: Bool = holidayObj.judgeJapaneseHoliday(targetYear, month: targetMonth, day: Int(day!)!)
 
                     cell.textLabel!.textColor = CalendarSetting.getCalendarColor(indexPath.row, holiday: holiday)
                     cell.textLabel!.text = day
