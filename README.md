@@ -35,7 +35,7 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 }
 ```
 
-# 導入方法
+### 導入方法
 
 このライブラリはCarthageに対応しています。
 プロジェクト内にCartfileを作成し下記のように記述をして下さい。
@@ -52,7 +52,7 @@ Carthageの導入やお使いのプロジェクトファイル内での設定方
 
 ※手動でプロジェクトに導入した際にはimport文が不要になります。
 
-# プロジェクトでの実装例
+### プロジェクトでの実装例
 
 下記のように判定したい年・月・日を引数にセットするだけでOKです。
 
@@ -68,7 +68,11 @@ let holiday = CalculateCalendarLogic()
 
 // Step3: 使用する際は引数を入れての判定を行う
 let result: Bool = holiday.judgeJapaneseHoliday(2016, month: 1, day: 1)
-print("2016年1月1日：\(result)") ==> 2016年1月1日：true
+
+// 実行結果
+print("2016年1月1日：\(result)")
+
+//コンソールでは「2016年1月1日：true」と表示されます
 ```
 
 本実装ではBool型での判定ではありますが、このメソッドをカスタマイズして戻り値を変更して「祝祭日の判定＆祝祭日名を返す」ようにする等の用途に応じてのカスタマイズも可能です。
