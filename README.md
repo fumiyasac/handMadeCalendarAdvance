@@ -1,4 +1,4 @@
-# handMadeCalendarAdvance(CalculateCalendarLogic) ※English
+# handMadeCalendarAdvance(CalculateCalendarLogic)
 This library CalculateCalendarLogic (sample project name is handMadeCalendarAdvance) can judge a holiday in Japan.
 
 ### Description
@@ -52,7 +52,7 @@ end
 
 Copy all the files in CalculateCalendarLogic/CalculateCalendarLogic.swift file into your project.
 
-##### Author
+### Author
 
 fumiyasac(Fumiya Sakai)
 
@@ -92,8 +92,10 @@ Special Thanks to
 
 and more iOS developers.
 
-# handMadeCalendarAdvance(CalculateCalendarLogic) ※日本語版
+# handMadeCalendarAdvance(CalculateCalendarLogic)
 Swift版の日本の祝祭日判定コードとカレンダーライブラリとサンプル
+
+![サンプル表示例](https://qiita-image-store.s3.amazonaws.com/0/17400/0d6ed6b2-6dc0-6a80-a2ea-4757bea94d4b.jpeg)
 
 日本の祝祭日の判定ロジックとそのロジックを活用したカレンダーサンプルの例になります。
 （※ 計算ロジックの実態部分はCalculateCalendarLogic.swiftを参照）
@@ -102,7 +104,7 @@ Swift版の日本の祝祭日判定コードとカレンダーライブラリと
 
 日本の祝祭日(振替休日)を判定する構造体を作成しました。
 使い方に関してはCalculateCalendarLogic.swiftをお使いのプロジェクトにコピーし、下記の「使い方」を参考に記述をして頂くとご利用になれます。
-その他のカレンダーアプリやお使いのアプリでのご活用して頂ければ幸いです。
+その他のカレンダーアプリを作成する際やお使いのアプリでご活用して頂ければ幸いです。
 
 ### このライブラリの内部仕様について
 
