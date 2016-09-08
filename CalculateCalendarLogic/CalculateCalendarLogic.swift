@@ -177,7 +177,7 @@ public struct CalculateCalendarLogic {
                 return true
             
             //(1).7月20日(1996年から2002年まで)、(2).7月の第3月曜日(2003年から): 海の日
-            case (year, 7, 20, _) where 1995 < year && year <= 2002:
+            case (1996...2002, 7, 20, _):
                 return true
             
             //(2).7月の第3月曜日(2003年から): 海の日
@@ -263,7 +263,7 @@ public struct CalculateCalendarLogic {
             
             //※昔の祝日はこちら
             //4月10日: 1959年だけ皇太子明仁親王の結婚の儀
-            case (year, 4, 10, _) where year == 1959:
+            case (1959, 4, 10, _):
                 return true
 
             //2月24日: 1989年だけ昭和天皇の大喪の礼
