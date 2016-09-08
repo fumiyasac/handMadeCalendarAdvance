@@ -116,8 +116,12 @@ public struct CalculateCalendarLogic {
             
             case (year, 1, 8...14, .Mon) where year >= 2000:
                 return true
+            
+            //1月16日: 成人の日の振替休日(1999年まで)
+            case (year, 1, 16, .Mon) where year <= 1999:
+                return true
 
-            //2月11日: 成人の日
+            //2月11日: 建国記念の日
             case (_, 2, 11, _):
                 return true
             
@@ -180,6 +184,10 @@ public struct CalculateCalendarLogic {
             case (year, 7, 15...21, .Mon) where 2003 <= year:
                 return true
             
+            //7月21日: 海の日の振替休日
+            case (1996...2002, 7, 21, .Mon):
+                return true
+            
             //8月11日: 2016年から山の日
             case (year, 8, 11, _) where year > 2015:
                 return true
@@ -193,6 +201,10 @@ public struct CalculateCalendarLogic {
                 return true
             
             case (year, 9, 15...21, .Mon) where year > 2002:
+                return true
+            
+            //9月16日: 敬老の日の振替休日
+            case (1966...2002, 9, 16, .Mon):
                 return true
             
             //9月22日 or 23日: 秋分の日(計算値によって算出)
@@ -219,6 +231,10 @@ public struct CalculateCalendarLogic {
                 return true
             
             case (year, 10, 8...14, .Mon) where year > 1999:
+                return true
+            
+            //10月11日: 体育の日の振替休日
+            case (1966...1999, 10, 11, .Mon):
                 return true
             
             //11月3日: 1948年から文化の日
