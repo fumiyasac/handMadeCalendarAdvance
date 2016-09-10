@@ -116,8 +116,12 @@ public struct CalculateCalendarLogic {
             
             case (year, 1, 8...14, .Mon) where year >= 2000:
                 return true
+            
+            //1月16日: 成人の日の振替休日(1999年まで)
+            case (year, 1, 16, .Mon) where year <= 1999:
+                return true
 
-            //2月11日: 成人の日
+            //2月11日: 建国記念の日
             case (_, 2, 11, _):
                 return true
             
@@ -173,11 +177,15 @@ public struct CalculateCalendarLogic {
                 return true
             
             //(1).7月20日(1996年から2002年まで)、(2).7月の第3月曜日(2003年から): 海の日
-            case (year, 7, 20, _) where 1995 < year && year <= 2002:
+            case (1996...2002, 7, 20, _):
                 return true
             
             //(2).7月の第3月曜日(2003年から): 海の日
             case (year, 7, 15...21, .Mon) where 2003 <= year:
+                return true
+            
+            //7月21日: 海の日の振替休日
+            case (1996...2002, 7, 21, .Mon):
                 return true
             
             //8月11日: 2016年から山の日
@@ -193,6 +201,10 @@ public struct CalculateCalendarLogic {
                 return true
             
             case (year, 9, 15...21, .Mon) where year > 2002:
+                return true
+            
+            //9月16日: 敬老の日の振替休日
+            case (1966...2002, 9, 16, .Mon):
                 return true
             
             //9月22日 or 23日: 秋分の日(計算値によって算出)
@@ -221,6 +233,10 @@ public struct CalculateCalendarLogic {
             case (year, 10, 8...14, .Mon) where year > 1999:
                 return true
             
+            //10月11日: 体育の日の振替休日
+            case (1966...1999, 10, 11, .Mon):
+                return true
+            
             //11月3日: 1948年から文化の日
             case (year, 11, 3, _) where PublicHolidaysLawYear <= year:
                 return true
@@ -247,7 +263,7 @@ public struct CalculateCalendarLogic {
             
             //※昔の祝日はこちら
             //4月10日: 1959年だけ皇太子明仁親王の結婚の儀
-            case (year, 4, 10, _) where year == 1959:
+            case (1959, 4, 10, _):
                 return true
 
             //2月24日: 1989年だけ昭和天皇の大喪の礼

@@ -387,12 +387,19 @@ class CalculateCalendarLogicTests: XCTestCase {
         let testCases: [(Int,Int,Int,Bool)] = [
             // 1995年
             (1995, 7, 20, false),
+            (1995, 7, 21, false),
             
             // 1996年
             (1996, 7, 20, true),
+            (1996, 7, 21, false),
+            
+            // 1997年
+            (1997, 7, 20, true),
+            (1997, 7, 21, true),
             
             // 2002年
             (2002, 7, 20, true),
+            (2002, 7, 21, false),
             
             // 2003年
             (2003, 7, 20, false), //日曜日ではあるが祝祭日ではない
@@ -400,7 +407,8 @@ class CalculateCalendarLogicTests: XCTestCase {
             
             // 2004年
             (2004, 7, 19, true),
-            (2003, 7, 20, false)
+            (2004, 7, 20, false),
+            (2004, 7, 21, false),
         ]
         testCases.forEach { year, month, day, expected in
             let result = test.judgeJapaneseHoliday(year, month: month, day: day)
