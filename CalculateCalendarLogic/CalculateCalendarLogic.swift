@@ -20,7 +20,9 @@ public enum Weekday: Int {
     case Sun, Mon, Tue, Wed, Thu, Fri, Sat
 
     init?(year: Int, month: Int, day: Int) {
-        let cal = NSCalendar.currentCalendar()
+        guard let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) else {
+            fatalError("can not create Calendar")
+        }
         guard let date = cal.dateWithEra(AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) else { return nil }
         let weekdayNum = cal.component(.Weekday, fromDate: date)  // 1:日曜日 ～ 7:土曜日
         self.init(rawValue: weekdayNum - 1)
@@ -85,8 +87,9 @@ public struct CalculateCalendarLogic {
      *
      */
     public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
-        
-        let cal = NSCalendar.currentCalendar()
+        guard let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) else {
+            fatalError("can not create Calendar")
+        }
         guard let date = cal.dateWithEra(
             AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) else {
             fatalError() // FIXME: throwにしたほうがよい？
@@ -314,7 +317,9 @@ public struct CalculateCalendarLogic {
      * 指定した年の敬老の日を調べる
      */
     internal func oldPeopleDay(year year: Int) -> Int {
-        let cal = NSCalendar.currentCalendar()
+        guard let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) else {
+            fatalError("can not create Calendar")
+        }
         
         func dateFromDay(day day: Int) -> NSDate? {
             return cal.dateWithEra(AD, year: year, month: 9, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)
