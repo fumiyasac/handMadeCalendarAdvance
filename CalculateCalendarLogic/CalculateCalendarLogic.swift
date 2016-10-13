@@ -20,9 +20,9 @@ public enum Weekday: Int {
     case Sun, Mon, Tue, Wed, Thu, Fri, Sat
 
     init?(year: Int, month: Int, day: Int) {
-        let cal = NSCalendar.currentCalendar()
-        guard let date = cal.dateWithEra(AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) else { return nil }
-        let weekdayNum = cal.component(.Weekday, fromDate: date)  // 1:日曜日 ～ 7:土曜日
+        let cal = Calendar.current as NSCalendar
+        guard let date = cal.date(era: AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) else { return nil }
+        let weekdayNum = cal.component(.weekday, from: date)  // 1:日曜日 ～ 7:土曜日
         self.init(rawValue: weekdayNum - 1)
     }
 
@@ -65,7 +65,7 @@ public struct CalculateCalendarLogic {
         
         /// 春分の日・秋分の日を計算する
         /// 参考：http://koyomi8.com/reki_doc/doc_0330.htm
-        func calcDay(year year: Int) -> Int {
+        func calcDay(year: Int) -> Int {
             let x1: Double = Double(year - 2000) * 0.242194
             let x2: Int = Int(Double(year - 2000) / 4)
             return Int(constant + x1 - Double(x2))
@@ -86,12 +86,12 @@ public struct CalculateCalendarLogic {
      */
     public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
         
-        let cal = NSCalendar.currentCalendar()
-        guard let date = cal.dateWithEra(
-            AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) else {
+        let cal = Calendar.current as NSCalendar
+        guard let date = cal.date(
+            era: AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) else {
             fatalError() // FIXME: throwにしたほうがよい？
         }
-        let weekdayNum = cal.component(.Weekday, fromDate: date) // 1:日曜日 ～ 7:土曜日
+        let weekdayNum = cal.component(.weekday, from: date) // 1:日曜日 ～ 7:土曜日
         
         guard let weekday = Weekday(rawValue: weekdayNum - 1) else { fatalError("weekdayIndex is invalid.") }
         
@@ -173,7 +173,7 @@ public struct CalculateCalendarLogic {
                 return true
             
             //ゴールデンウィークの振替休日
-            case (_, 5, 6, _) where getGoldenWeekAlterHoliday(year, weekday: weekday):
+            case (_, 5, 6, _) where getGoldenWeekAlterHoliday(year: year, weekday: weekday):
                 return true
             
             //(1).7月20日(1996年から2002年まで)、(2).7月の第3月曜日(2003年から): 海の日
@@ -293,7 +293,8 @@ public struct CalculateCalendarLogic {
      */
     private func getGoldenWeekAlterHoliday(year: Int, weekday: Weekday) -> Bool {
         switch weekday {
-        case .Mon, .Tue, .Wed where 2007 <= year:
+        case .Mon, .Tue, 
+             .Wed where 2007 <= year:
             return true
         default:
             return false
@@ -306,24 +307,24 @@ public struct CalculateCalendarLogic {
      * 敬老の日の2日後が秋分の日ならば間に挟まれた期間は国民の休日とする
      *
      */
-    private func getAlterHolidaySliverWeek(year year: Int) -> Bool {
+    private func getAlterHolidaySliverWeek(year: Int) -> Bool {
         return oldPeopleDay(year: year) + 2 == SpringAutumn.Autumn.calcDay(year: year)
     }
     
     /**
      * 指定した年の敬老の日を調べる
      */
-    internal func oldPeopleDay(year year: Int) -> Int {
-        let cal = NSCalendar.currentCalendar()
+    internal func oldPeopleDay(year: Int) -> Int {
+        let cal = Calendar.current as NSCalendar
         
-        func dateFromDay(day day: Int) -> NSDate? {
-            return cal.dateWithEra(AD, year: year, month: 9, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)
+        func dateFromDay(day: Int) -> NSDate? {
+            return cal.date(era: AD, year: year, month: 9, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) as NSDate?
         }
         
-        func weekdayAndDayFromDate(date date: NSDate) -> (weekday: Int, day: Int) {
+        func weekdayAndDayFromDate(date: NSDate) -> (weekday: Int, day: Int) {
             return (
-                weekday: cal.component(.Weekday, fromDate: date),
-                day:     cal.component(.Day, fromDate: date)
+                weekday: cal.component(.weekday, from: date as Date),
+                day:     cal.component(.day, from: date as Date)
             )
         }
         
