@@ -36,11 +36,49 @@ We can use this library with CocoaPods, Cathage, Manually.
 
 ##### Use Cocoa
 
+★ 〜Swift2.2
+
 ```
 platform :ios, '8.0'
 use_frameworks!
 target 'podsample' do
   pod 'CalculateCalendarLogic'
+end
+```
+
+★ Swift2.3
+
+```
+platform :ios, '8.0'
+swift_version = '2.3'
+use_frameworks!
+target 'podsample' do
+  pod 'CalculateCalendarLogic', git: 'https://github.com/fumiyasac/handMadeCalendarAdvance.git', branch: 'feature/swift2.3'
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '2.3'
+      end
+    end
+  end
+end
+```
+
+★ Swift3.0
+
+```
+platform :ios, '8.0'
+swift_version = '3.0'
+use_frameworks!
+target 'podsample' do
+  pod 'CalculateCalendarLogic', git: 'https://github.com/fumiyasac/handMadeCalendarAdvance.git', branch: 'feature/swift3'
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '3.0'
+      end
+    end
+  end
 end
 ```
 
@@ -71,7 +109,11 @@ let holiday = CalculateCalendarLogic()
 ...
 
 // Step3: input year, month and day values into judgeJapaneseHoliday method.
+
+// Swift2.2 or 2.3 Syntax
 let result: Bool = holiday.judgeJapaneseHoliday(2016, month: 1, day: 1)
+// Swift3.0 Syntax
+let result: Bool = holiday.judgeJapaneseHoliday(year: 2016, month: 1, day: 1)
 
 // Result:
 print("2016 January 1：\(result)")
@@ -88,6 +130,7 @@ print("2016 January 1：\(result)")
 Special Thanks to
 
 + [akio0911](https://github.com/akio0911): Technical Support & Refactoring
++ [akuraru](https://github.com/akuraru): Refactoring & Bugfix
 + [keygx](https://github.com/keygx): How to use CocoaPods
 
 and more iOS developers.
@@ -140,11 +183,49 @@ IOS 8+
 このライブラリはCocoaPodsに対応しています。
 プロジェクト内にPodfileを作成し下記のように記述をして下さい。
 
+★ 〜Swift2.2
+
 ```
 platform :ios, '8.0'
 use_frameworks!
 target 'podsample' do
   pod 'CalculateCalendarLogic'
+end
+```
+
+★ Swift2.3
+
+```
+platform :ios, '8.0'
+swift_version = '2.3'
+use_frameworks!
+target 'podsample' do
+  pod 'CalculateCalendarLogic', git: 'https://github.com/fumiyasac/handMadeCalendarAdvance.git', branch: 'feature/swift2.3'
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '2.3'
+      end
+    end
+  end
+end
+```
+
+★ Swift3.0
+
+```
+platform :ios, '8.0'
+swift_version = '3.0'
+use_frameworks!
+target 'podsample' do
+  pod 'CalculateCalendarLogic', git: 'https://github.com/fumiyasac/handMadeCalendarAdvance.git', branch: 'feature/swift3'
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '3.0'
+      end
+    end
+  end
 end
 ```
 
@@ -181,7 +262,11 @@ let holiday = CalculateCalendarLogic()
 ...
 
 // Step3: 使用する際は引数を入れての判定を行う
+
+// Swift2.2 or 2.3での書き方
 let result: Bool = holiday.judgeJapaneseHoliday(2016, month: 1, day: 1)
+// Swift3.0での書き方
+let result: Bool = holiday.judgeJapaneseHoliday(year: 2016, month: 1, day: 1)
 
 // 実行結果
 print("2016年1月1日：\(result)")
@@ -210,6 +295,7 @@ print("2016年1月1日：\(result)")
 
 まだまだ甘い部分があるかもしれませんが、その際はPullRequest等を送っていただければ幸いです。アプリ開発の中でこのサンプルが少しでもお役にたつ事ができれば嬉しい限りです。
 
++ 2016.10.13: Swift2.3及びSwift3.0ブランチ作成
 + 2016.09.03: CocoaPodsへの対応をしました（ドキュメント修正や追記含む）
 + 2016.05.28: READMEに追記をしました（Carthageで導入する際の手順や文章の修正等）
 + 2016.05.09: カレンダーに実装した例を掲載しました（UICollectionViewを使用）
@@ -217,4 +303,4 @@ print("2016年1月1日：\(result)")
 
 ### 謝辞
 
-このライブラリの作成にあたり[akio0911](https://github.com/akio0911)さん、[keygx](https://github.com/keygx)さんに多くのお力添えを頂きまして誠にありがとうございました。
+このライブラリの作成にあたり[akio0911](https://github.com/akio0911)さん、[akuraru](https://github.com/akuraru)さん、[keygx](https://github.com/keygx)さんに多くのお力添えを頂きまして誠にありがとうございました。
