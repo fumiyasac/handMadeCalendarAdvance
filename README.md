@@ -5,7 +5,8 @@ This library CalculateCalendarLogic (sample project name is handMadeCalendarAdva
 
 + 2016/12/29:
 
-This library is currently responding about CocoaPods / Cathage install. We can use this library with Manually. Copy all the files in CalculateCalendarLogic/CalculateCalendarLogic.swift file into your project. I'm sorry to trouble you.
+This library is currently responding about Cathage install. We can use this library with Manually or CocoaPods.
+I'm sorry to trouble you.
 
 ### Description
 
@@ -39,7 +40,21 @@ iOS8+
 
 ### Installation
 
-We can use this library with Manually.
+We can use this library with CocoaPods, Manually.
+
+##### Use CocoaPods
+
+Create Podfile and specify it in your Podfile:
+
+★ Example of Podfile
+
+```
+platform :ios, '8.0'
+use_frameworks!
+target [YOUR PROJECT NAME]' do
+  pod 'CalculateCalendarLogic'
+end
+```
 
 ##### Manually
 
@@ -56,11 +71,14 @@ It's as below.
 ```swift
 /* ViewController.swift */
 
-// Step1: create instance of CalculateCalendarLogic
+// Step1: import CalculateCalendarLogic (If you install manually, you don't need import statement.)
+import CalculateCalendarLogic
+
+// Step2: create instance of CalculateCalendarLogic
 let holiday = CalculateCalendarLogic()
 ...
 
-// Step2: input year, month and day values into judgeJapaneseHoliday method.
+// Step3: input year, month and day values into judgeJapaneseHoliday method.
 let result: Bool = holiday.judgeJapaneseHoliday(year: 2016, month: 1, day: 1)
 
 // Result:
@@ -95,7 +113,7 @@ Swift版の日本の祝祭日判定コードとカレンダーライブラリと
 
 + 2016/12/29:
 
-このライブラリに関してですが、CocoaPods / Cathageでのインストールに関しては現在対応中です。お手数ではありますが`CalculateCalendarLogic.swift`をご自身でお使いのプロジェクトに追加して対応を行って頂ければ幸いに思います。お手数をおかけしますが何卒宜しくお願い致します。
+このライブラリに関してですが、Cathageでのインストールに関しては現在対応中です。お手数ではありますが`CalculateCalendarLogic.swift`をご自身でお使いのプロジェクトに追加ないしはCocoaPodsでのインストールを行って頂ければ幸いに思います。お手数をおかけしますが何卒宜しくお願い致します。
 
 ### 概要
 
@@ -134,12 +152,30 @@ IOS 8+
 
 ### 導入方法
 
-手動でライブラリファイルを追加する方法で使用可能です。
-`CalculateCalendarLogic.swift`ファイルをご自身のプロジェクトに追加して下さい。
+このライブラリはCocoaPods及び手動での追加に対応しています。
+
+##### CocoaPodsでの追加
+
+プロジェクト内にPodfileを作成し下記のように記述をして下さい。
+
+★ Podfileの記述例
+
+```
+target '[自分のプロジェクト名]' do
+  use_frameworks!
+  pod 'CalculateCalendarLogic'
+end
+```
+
+##### 手動での追加
+
+また手動でライブラリファイルを追加する場合には、`CalculateCalendarLogic.swift`ファイルをご自身のプロジェクトに追加して下さい。
 
 導入例：[ライブラリを使わないカレンダーサンプル](https://github.com/fumiyasac/handMadeCalendarOfSwift)
 
-※手動でプロジェクトに導入した際にはimport文が不要になります。
+### Author
+
+fumiyasac(Fumiya Sakai)
 
 ### プロジェクトでの実装例
 
@@ -148,11 +184,14 @@ IOS 8+
 ```swift
 /* ViewController.swift */
 
-// Step1: CalculateCalendarLogicのインスタンスを作成
+// Step1: ライブラリのインポート（手動で導入した場合は不要）
+import CalculateCalendarLogic
+
+// Step2: CalculateCalendarLogicのインスタンスを作成
 let holiday = CalculateCalendarLogic()
 ...
 
-// Step2: 使用する際は引数を入れての判定を行う
+// Step3: 使用する際は引数を入れての判定を行う
 let result: Bool = holiday.judgeJapaneseHoliday(year: 2016, month: 1, day: 1)
 
 // 実行結果
@@ -182,7 +221,7 @@ print("2016年1月1日：\(result)")
 
 まだまだ甘い部分があるかもしれませんが、その際はPullRequest等を送っていただければ幸いです。アプリ開発の中でこのサンプルが少しでもお役にたつ事ができれば嬉しい限りです。
 
-+ 2016.12.29: Swift3系への対応を行いました（CocoaPods & Cathageへの対応はこれから行います。すみません）
++ 2016.12.29: Swift3系への対応を行いました。（Cathageへの対応はこれから行います。すみません）
 + 2016.10.13: Swift2.3及びSwift3.0ブランチ作成
 + 2016.09.03: CocoaPodsへの対応をしました（ドキュメント修正や追記含む）
 + 2016.05.28: READMEに追記をしました（Carthageで導入する際の手順や文章の修正等）
