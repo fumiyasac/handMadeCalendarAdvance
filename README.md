@@ -1,7 +1,14 @@
 # handMadeCalendarAdvance(CalculateCalendarLogic)
 This library CalculateCalendarLogic (sample project name is handMadeCalendarAdvance) can judge a holiday in Japan.
 
+### Notice
+
++ 2016/12/29:
+
+This library is currently responding about CocoaPods / Cathage install. We can use this library with Manually. Copy all the files in CalculateCalendarLogic/CalculateCalendarLogic.swift file into your project. I'm sorry to trouble you.
+
 ### Description
+
 This library 'CalculateCalendarLogic' can judge a holiday in Japan.
 When you use this library, you can judge can judge a holiday in Japan very easily.
 A method which named 'judgeJapaneseHoliday' method stores variables year, month, and day in an argument, it returns true or false.
@@ -32,59 +39,7 @@ iOS8+
 
 ### Installation
 
-We can use this library with CocoaPods, Cathage, Manually.
-
-##### Use Cocoa
-
-★ 〜Swift2.2
-
-```
-platform :ios, '8.0'
-use_frameworks!
-target 'podsample' do
-  pod 'CalculateCalendarLogic'
-end
-```
-
-★ Swift2.3
-
-```
-platform :ios, '8.0'
-swift_version = '2.3'
-use_frameworks!
-target 'podsample' do
-  pod 'CalculateCalendarLogic', git: 'https://github.com/fumiyasac/handMadeCalendarAdvance.git', branch: 'feature/swift2.3'
-  post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        config.build_settings['SWIFT_VERSION'] = '2.3'
-      end
-    end
-  end
-end
-```
-
-★ Swift3.0
-
-```
-platform :ios, '8.0'
-swift_version = '3.0'
-use_frameworks!
-target 'podsample' do
-  pod 'CalculateCalendarLogic', git: 'https://github.com/fumiyasac/handMadeCalendarAdvance.git', branch: 'feature/swift3'
-  post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        config.build_settings['SWIFT_VERSION'] = '3.0'
-      end
-    end
-  end
-end
-```
-
-##### Use Cathage
-
-`github "fumiyasac/handMadeCalendarAdvance"`
+We can use this library with Manually.
 
 ##### Manually
 
@@ -101,18 +56,11 @@ It's as below.
 ```swift
 /* ViewController.swift */
 
-// Step1: import CalculateCalendarLogic
-import CalculateCalendarLogic
-
-// Step2: create instance of CalculateCalendarLogic
+// Step1: create instance of CalculateCalendarLogic
 let holiday = CalculateCalendarLogic()
 ...
 
-// Step3: input year, month and day values into judgeJapaneseHoliday method.
-
-// Swift2.2 or 2.3 Syntax
-let result: Bool = holiday.judgeJapaneseHoliday(2016, month: 1, day: 1)
-// Swift3.0 Syntax
+// Step2: input year, month and day values into judgeJapaneseHoliday method.
 let result: Bool = holiday.judgeJapaneseHoliday(year: 2016, month: 1, day: 1)
 
 // Result:
@@ -142,6 +90,12 @@ Swift版の日本の祝祭日判定コードとカレンダーライブラリと
 
 日本の祝祭日の判定ロジックとそのロジックを活用したカレンダーサンプルの例になります。
 （※ 計算ロジックの実態部分はCalculateCalendarLogic.swiftを参照）
+
+### アナウンス事項
+
++ 2016/12/29:
+
+このライブラリに関してですが、CocoaPods / Cathageでのインストールに関しては現在対応中です。お手数ではありますが`CalculateCalendarLogic.swift`をご自身でお使いのプロジェクトに追加して対応を行って頂ければ幸いに思います。お手数をおかけしますが何卒宜しくお願い致します。
 
 ### 概要
 
@@ -180,68 +134,8 @@ IOS 8+
 
 ### 導入方法
 
-このライブラリはCocoaPodsに対応しています。
-プロジェクト内にPodfileを作成し下記のように記述をして下さい。
-
-★ 〜Swift2.2
-
-```
-platform :ios, '8.0'
-use_frameworks!
-target 'podsample' do
-  pod 'CalculateCalendarLogic'
-end
-```
-
-★ Swift2.3
-
-```
-platform :ios, '8.0'
-swift_version = '2.3'
-use_frameworks!
-target 'podsample' do
-  pod 'CalculateCalendarLogic', git: 'https://github.com/fumiyasac/handMadeCalendarAdvance.git', branch: 'feature/swift2.3'
-  post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        config.build_settings['SWIFT_VERSION'] = '2.3'
-      end
-    end
-  end
-end
-```
-
-★ Swift3.0
-
-```
-platform :ios, '8.0'
-swift_version = '3.0'
-use_frameworks!
-target 'podsample' do
-  pod 'CalculateCalendarLogic', git: 'https://github.com/fumiyasac/handMadeCalendarAdvance.git', branch: 'feature/swift3'
-  post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        config.build_settings['SWIFT_VERSION'] = '3.0'
-      end
-    end
-  end
-end
-```
-
-このライブラリはCarthageに対応しています。
-プロジェクト内にCartfileを作成し下記のように記述をして下さい。
-
-`github "fumiyasac/handMadeCalendarAdvance"`
-
-CocoaPodsの導入やお使いのプロジェクトファイル内での設定方法につきましては下記のリンクを参考にしてみて下さい。
-[（引用）【Swift】Cocoapods導入手順](http://qiita.com/ShinokiRyosei/items/3090290cb72434852460)
-
-Carthageの導入やお使いのプロジェクトファイル内での設定方法につきましては下記のリンクを参考にしてみて下さい。
-[（引用）Swift用依存管理マネージャのCarthageを導入する](http://edy.hatenablog.com/entry/2015/05/17/172139)
-
-また手動でライブラリファイルを追加する方法でも使用できます。
-その際は`CalculateCalendarLogic.swift`ファイルを追加して下さい。
+手動でライブラリファイルを追加する方法で使用可能です。
+`CalculateCalendarLogic.swift`ファイルをご自身のプロジェクトに追加して下さい。
 
 導入例：[ライブラリを使わないカレンダーサンプル](https://github.com/fumiyasac/handMadeCalendarOfSwift)
 
@@ -254,17 +148,11 @@ Carthageの導入やお使いのプロジェクトファイル内での設定方
 ```swift
 /* ViewController.swift */
 
-// Step1: ライブラリのインポート
-import CalculateCalendarLogic
-
-// Step2: CalculateCalendarLogicのインスタンスを作成
+// Step1: CalculateCalendarLogicのインスタンスを作成
 let holiday = CalculateCalendarLogic()
 ...
 
-// Step3: 使用する際は引数を入れての判定を行う
-
-// Swift2.2 or 2.3での書き方
-let result: Bool = holiday.judgeJapaneseHoliday(2016, month: 1, day: 1)
+// Step2: 使用する際は引数を入れての判定を行う
 // Swift3.0での書き方
 let result: Bool = holiday.judgeJapaneseHoliday(year: 2016, month: 1, day: 1)
 
@@ -295,6 +183,7 @@ print("2016年1月1日：\(result)")
 
 まだまだ甘い部分があるかもしれませんが、その際はPullRequest等を送っていただければ幸いです。アプリ開発の中でこのサンプルが少しでもお役にたつ事ができれば嬉しい限りです。
 
++ 2016.12.29: Swift3系への対応を行いました（CocoaPods & Cathageへの対応はこれから行います。すみません）
 + 2016.10.13: Swift2.3及びSwift3.0ブランチ作成
 + 2016.09.03: CocoaPodsへの対応をしました（ドキュメント修正や追記含む）
 + 2016.05.28: READMEに追記をしました（Carthageで導入する際の手順や文章の修正等）

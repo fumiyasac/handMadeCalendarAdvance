@@ -26,13 +26,13 @@ class CalendarCell: UICollectionViewCell {
     }
 
     //要素を追加する
-    private func initCommon() {
+    fileprivate func initCommon() {
 
         //UILabelを生成
-        textLabel = UILabel(frame: CGRectMake(0, 0, frame.width, frame.height))
+        textLabel = UILabel(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         textLabel?.text = nil
-        textLabel?.backgroundColor = UIColor.whiteColor()
-        textLabel?.textAlignment = .Center
+        textLabel?.backgroundColor = UIColor.white
+        textLabel?.textAlignment = .center
 
         //Cellに配置したい要素を追加
         contentView.addSubview(textLabel!)
