@@ -153,7 +153,6 @@ let holiday = CalculateCalendarLogic()
 ...
 
 // Step2: 使用する際は引数を入れての判定を行う
-// Swift3.0での書き方
 let result: Bool = holiday.judgeJapaneseHoliday(year: 2016, month: 1, day: 1)
 
 // 実行結果
