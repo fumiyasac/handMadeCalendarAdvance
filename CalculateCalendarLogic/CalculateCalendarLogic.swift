@@ -26,6 +26,7 @@ public enum Weekday: Int {
         self.init(rawValue: weekdayNum - 1)
     }
 
+    //曜日の表記（日,月,火,水,木,金,土の表記）
     var shortName: String {
         switch self {
         case .sun: return "日"
@@ -37,13 +38,41 @@ public enum Weekday: Int {
         case .sat: return "土"
         }
     }
-    
+
+    //曜日の表記（○曜の表記）
     var mediumName: String {
         return shortName + "曜"
     }
-    
+
+    //曜日の表記（○曜日の表記）
     var longName: String {
         return shortName + "曜日"
+    }
+
+    //曜日の英語表記（略したもの）
+    var englishName: String {
+        switch self {
+        case .sun: return "Sun"
+        case .mon: return "Mon"
+        case .tue: return "Tue"
+        case .wed: return "Wed"
+        case .thu: return "Thu"
+        case .fri: return "Fri"
+        case .sat: return "Sat"
+        }
+    }
+
+    //曜日の英語表記（完全スペルのもの）
+    var englishLongName: String {
+        switch self {
+        case .sun: return "Sunday"
+        case .mon: return "Monday"
+        case .tue: return "Tuesday"
+        case .wed: return "Wednesday"
+        case .thu: return "Thursday"
+        case .fri: return "Friday"
+        case .sat: return "Saturday"
+        }
     }
 }
 
