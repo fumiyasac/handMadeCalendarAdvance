@@ -25,12 +25,12 @@ struct CalendarSetting {
     static func getCalendarColor(_ weekdayIndex: Int, holiday: Bool) -> UIColor {
 
         //日曜日または祝祭日の場合の色
-        if (weekdayIndex % 7 == Weekday.Sun.rawValue || holiday == true) {
+        if (weekdayIndex % 7 == Weekday.sun.rawValue || holiday == true) {
 
             return UIColor(red: CGFloat(0.831), green: CGFloat(0.349), blue: CGFloat(0.224), alpha: CGFloat(1.0))
 
         //土曜日の場合の色
-        } else if (weekdayIndex % 7 == Weekday.Sat.rawValue) {
+        } else if (weekdayIndex % 7 == Weekday.sat.rawValue) {
 
             return  UIColor(red: CGFloat(0.400), green: CGFloat(0.471), blue: CGFloat(0.980), alpha: CGFloat(1.0))
 

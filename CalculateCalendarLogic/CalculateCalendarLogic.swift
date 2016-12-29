@@ -17,7 +17,7 @@ private let AD = 1 // 紀元後
  */
 
 public enum Weekday: Int {
-    case Sun, Mon, Tue, Wed, Thu, Fri, Sat
+    case sun, mon, tue, wed, thu, fri, sat
 
     init?(year: Int, month: Int, day: Int) {
         let cal = Calendar.current as NSCalendar
@@ -28,13 +28,13 @@ public enum Weekday: Int {
 
     var shortName: String {
         switch self {
-        case .Sun: return "日"
-        case .Mon: return "月"
-        case .Tue: return "火"
-        case .Wed: return "水"
-        case .Thu: return "木"
-        case .Fri: return "金"
-        case .Sat: return "土"
+        case .sun: return "日"
+        case .mon: return "月"
+        case .tue: return "火"
+        case .wed: return "水"
+        case .thu: return "木"
+        case .fri: return "金"
+        case .sat: return "土"
         }
     }
     
@@ -51,15 +51,15 @@ public struct CalculateCalendarLogic {
     
     private enum SpringAutumn {
         /// 春分の日
-        case Spring
+        case spring
         
         /// 秋分の日
-        case Autumn
+        case autumn
         
         var constant: Double {
             switch self {
-            case .Spring: return 20.69115
-            case .Autumn: return 23.09000
+            case .spring: return 20.69115
+            case .autumn: return 23.09000
             }
         }
         
@@ -115,18 +115,18 @@ public struct CalculateCalendarLogic {
                 return true
 
             //1月2日: 振替休日
-            case (year, 1, 2, .Mon) where year >= AlternateHolidaysLawYear:
+            case (year, 1, 2, .mon) where year >= AlternateHolidaysLawYear:
                 return true
             
             //(1).1月15日(1999年まで)、(2).1月の第2月曜日(2000年から): 成人の日
             case (year, 1, 15, _) where year <= 1999:
                 return true
             
-            case (year, 1, 8...14, .Mon) where year >= 2000:
+            case (year, 1, 8...14, .mon) where year >= 2000:
                 return true
             
             //1月16日: 成人の日の振替休日(1999年まで)
-            case (year, 1, 16, .Mon) where year >= AlternateHolidaysLawYear && year <= 1999:
+            case (year, 1, 16, .mon) where year >= AlternateHolidaysLawYear && year <= 1999:
                 return true
 
             //2月11日: 建国記念の日
@@ -134,18 +134,18 @@ public struct CalculateCalendarLogic {
                 return true
             
             //2月12日: 振替休日
-            case (year, 2, 12, .Mon) where year >= AlternateHolidaysLawYear:
+            case (year, 2, 12, .mon) where year >= AlternateHolidaysLawYear:
                 return true
             
             //3月20日 or 21日: 春分の日(計算値によって算出)
             case (year, 3, day, _)
-                where PublicHolidaysLawYear < year && day == SpringAutumn.Spring.calcDay(year: year):
+                where PublicHolidaysLawYear < year && day == SpringAutumn.spring.calcDay(year: year):
                 
                 return true
 
             //春分の日の次が月曜日: 振替休日
-            case (year, 3, day, .Mon)
-                where year >= AlternateHolidaysLawYear && day == SpringAutumn.Spring.calcDay(year: year) + 1:
+            case (year, 3, day, .mon)
+                where year >= AlternateHolidaysLawYear && day == SpringAutumn.spring.calcDay(year: year) + 1:
                 
                 return true
             
@@ -154,7 +154,7 @@ public struct CalculateCalendarLogic {
                 return true
             
             //4月30日: 振替休日
-            case (year, 4, 30, .Mon) where year >= AlternateHolidaysLawYear:
+            case (year, 4, 30, .mon) where year >= AlternateHolidaysLawYear:
                 return true
             
             //5月3日: 1949年から憲法記念日
@@ -162,14 +162,14 @@ public struct CalculateCalendarLogic {
                 return true
 
             //5月4日: (1)1988年以前は振替休日、(2).1988年から2006年まで国民の休日、2007年以降はみどりの日
-            case (year, 5, 4, .Mon) where year < 1988:
+            case (year, 5, 4, .mon) where year < 1988:
                 return true
 
-            case (1988...2006, 5, 4, .Tue),
-                 (1988...2006, 5, 4, .Wed),
-                 (1988...2006, 5, 4, .Thu),
-                 (1988...2006, 5, 4, .Fri),
-                 (1988...2006, 5, 4, .Sat):
+            case (1988...2006, 5, 4, .tue),
+                 (1988...2006, 5, 4, .wed),
+                 (1988...2006, 5, 4, .thu),
+                 (1988...2006, 5, 4, .fri),
+                 (1988...2006, 5, 4, .sat):
                 
                 return true
 
@@ -189,11 +189,11 @@ public struct CalculateCalendarLogic {
                 return true
             
             //(2).7月の第3月曜日(2003年から): 海の日
-            case (year, 7, 15...21, .Mon) where 2003 <= year:
+            case (year, 7, 15...21, .mon) where 2003 <= year:
                 return true
             
             //7月21日: 海の日の振替休日
-            case (1996...2002, 7, 21, .Mon):
+            case (1996...2002, 7, 21, .mon):
                 return true
             
             //8月11日: 2016年から山の日
@@ -201,36 +201,36 @@ public struct CalculateCalendarLogic {
                 return true
             
             //8月12日: 振替休日
-            case (year, 8, 12, .Mon) where year > 2015:
+            case (year, 8, 12, .mon) where year > 2015:
                 return true
             
             //(1).9月15日(1966年から2002年まで)、(2).9月の第3月曜日(2003年から): 敬老の日
             case (1966...2002, 9, 15, _):
                 return true
             
-            case (year, 9, 15...21, .Mon) where year > 2002:
+            case (year, 9, 15...21, .mon) where year > 2002:
                 return true
             
             //9月16日: 敬老の日の振替休日
-            case (1973...2002, 9, 16, .Mon):
+            case (1973...2002, 9, 16, .mon):
                 return true
             
             //9月22日 or 23日: 秋分の日(計算値によって算出)
             case (year, 9, day, _)
-                where PublicHolidaysLawYear <= year && day == SpringAutumn.Autumn.calcDay(year: year):
+                where PublicHolidaysLawYear <= year && day == SpringAutumn.autumn.calcDay(year: year):
                 
                 return true
             
             //秋分の日の次が月曜日: 振替休日
-            case (year, 9, day, .Mon)
-                where year >= AlternateHolidaysLawYear && day == SpringAutumn.Autumn.calcDay(year: year) + 1:
+            case (year, 9, day, .mon)
+                where year >= AlternateHolidaysLawYear && day == SpringAutumn.autumn.calcDay(year: year) + 1:
                 
                 return true
             
             //シルバーウィークの振替休日である
             case (_, 9, _, _)
                 where oldPeopleDay(year: year) < day
-                    && day < SpringAutumn.Autumn.calcDay(year: year)
+                    && day < SpringAutumn.autumn.calcDay(year: year)
                     && getAlterHolidaySliverWeek(year: year):
                 return true
             
@@ -238,11 +238,11 @@ public struct CalculateCalendarLogic {
             case (1966...1999, 10, 10, _):
                 return true
             
-            case (year, 10, 8...14, .Mon) where year > 1999:
+            case (year, 10, 8...14, .mon) where year > 1999:
                 return true
             
             //10月11日: 体育の日の振替休日
-            case (1966...1999, 10, 11, .Mon):
+            case (1966...1999, 10, 11, .mon):
                 return true
             
             //11月3日: 1948年から文化の日
@@ -250,7 +250,7 @@ public struct CalculateCalendarLogic {
                 return true
             
             //11月4日: 振替休日
-            case (year, 11, 4, .Mon) where year >= AlternateHolidaysLawYear:
+            case (year, 11, 4, .mon) where year >= AlternateHolidaysLawYear:
                 return true
             
             //11月23日: 1948年から勤労感謝の日
@@ -258,7 +258,7 @@ public struct CalculateCalendarLogic {
                 return true
             
             //11月24日: 振替休日
-            case (year, 11, 24, .Mon) where year >= AlternateHolidaysLawYear:
+            case (year, 11, 24, .mon) where year >= AlternateHolidaysLawYear:
                 return true
             
             //12月23日: 1989年から天皇誕生日
@@ -266,7 +266,7 @@ public struct CalculateCalendarLogic {
                 return true
             
             //12月24日: 振替休日
-            case (year, 12, 24, .Mon) where year > 1989:
+            case (year, 12, 24, .mon) where year > 1989:
                 return true
             
             //※昔の祝日はこちら
@@ -301,8 +301,8 @@ public struct CalculateCalendarLogic {
      */
     private func getGoldenWeekAlterHoliday(year: Int, weekday: Weekday) -> Bool {
         switch weekday {
-        case .Mon, .Tue, 
-             .Wed where 2007 <= year:
+        case .mon, .tue,
+             .wed where 2007 <= year:
             return true
         default:
             return false
@@ -316,7 +316,7 @@ public struct CalculateCalendarLogic {
      *
      */
     private func getAlterHolidaySliverWeek(year: Int) -> Bool {
-        return oldPeopleDay(year: year) + 2 == SpringAutumn.Autumn.calcDay(year: year)
+        return oldPeopleDay(year: year) + 2 == SpringAutumn.autumn.calcDay(year: year)
     }
     
     /**
