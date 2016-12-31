@@ -151,9 +151,10 @@ class CalculateCalendarLogicTests: XCTestCase {
     /**
      *
      * シルバーウィークの判定のテスト
-     * 該当テストケース1: 2015年
-     * 該当テストケース2: 2026年
-     * 該当テストケース3: 2032年
+     * 該当テストケース1: 2009年
+     * 該当テストケース2: 2015年
+     * 該当テストケース3: 2026年
+     * 該当テストケース4: 2032年
      *
      */
     func testSilverWeek() {
@@ -161,6 +162,18 @@ class CalculateCalendarLogicTests: XCTestCase {
         let test = CalculateCalendarLogic()
         
         let testCases: [(Int,Int,Int,Bool)] = [
+            
+            // 1999年(2016/12/31: Bugfix)
+            (1999, 9, 21, false),
+
+            // 2009年
+            (2009, 9, 19, false),
+            (2009, 9, 20, false),
+            (2009, 9, 21, true),
+            (2009, 9, 22, true),
+            (2009, 9, 23, true),
+            (2009, 9, 24, false),
+            
             // 2015年
             (2015, 9, 19, false),
             (2015, 9, 20, false),

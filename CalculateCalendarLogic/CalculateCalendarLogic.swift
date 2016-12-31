@@ -256,11 +256,12 @@ public struct CalculateCalendarLogic {
                 
                 return true
             
-            //シルバーウィークの振替休日である
+            //シルバーウィークの振替休日である(※現行の法律改正から変わらないと仮定した場合2009年から発生する)
+            //See also: https://ja.wikipedia.org/wiki/シルバーウィーク
             case (_, 9, _, _)
                 where oldPeopleDay(year: year) < day
                     && day < SpringAutumn.autumn.calcDay(year: year)
-                    && getAlterHolidaySliverWeek(year: year):
+                    && getAlterHolidaySliverWeek(year: year) && year > 2008:
                 return true
             
             //(1).10月10日(1966年から1999年まで)、(2).10月の第2月曜日(2000年から): 体育の日

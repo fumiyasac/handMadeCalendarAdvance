@@ -1,13 +1,6 @@
 # handMadeCalendarAdvance(CalculateCalendarLogic)
 This library CalculateCalendarLogic (sample project name is handMadeCalendarAdvance) can judge a holiday in Japan.
 
-### Notice
-
-+ 2016/12/29:
-
-This library is currently responding about Cathage install. We can use this library with Manually or CocoaPods.
-I'm sorry to trouble you.
-
 ### Description
 
 This library 'CalculateCalendarLogic' can judge a holiday in Japan.
@@ -40,7 +33,7 @@ iOS8+
 
 ### Installation
 
-We can use this library with CocoaPods, Manually.
+We can use this library with CocoaPods, Carthage, Manually.
 
 ##### Use CocoaPods
 
@@ -54,6 +47,16 @@ use_frameworks!
 target [YOUR PROJECT NAME]' do
   pod 'CalculateCalendarLogic'
 end
+```
+
+##### Use Carthage
+
+Create Carthage and specify it in your Cartfile:
+
+★ Cartfile
+
+```
+github "fumiyasac/handMadeCalendarAdvance"
 ```
 
 ##### Manually
@@ -109,12 +112,6 @@ Swift版の日本の祝祭日判定コードとカレンダーライブラリと
 日本の祝祭日の判定ロジックとそのロジックを活用したカレンダーサンプルの例になります。
 （※ 計算ロジックの実態部分はCalculateCalendarLogic.swiftを参照）
 
-### アナウンス事項
-
-+ 2016/12/29:
-
-このライブラリに関してですが、Cathageでのインストールに関しては現在対応中です。お手数ではありますが`CalculateCalendarLogic.swift`をご自身でお使いのプロジェクトに追加ないしはCocoaPodsでのインストールを行って頂ければ幸いに思います。お手数をおかけしますが何卒宜しくお願い致します。
-
 ### 概要
 
 日本の祝祭日(振替休日)を判定する構造体を作成しました。
@@ -152,7 +149,7 @@ IOS 8+
 
 ### 導入方法
 
-このライブラリはCocoaPods及び手動での追加に対応しています。
+このライブラリはCocoaPods・Carthage及び手動での追加に対応しています。
 
 ##### CocoaPodsでの追加
 
@@ -166,6 +163,18 @@ target '[自分のプロジェクト名]' do
   pod 'CalculateCalendarLogic'
 end
 ```
+
+##### Carthageでの追加
+
+プロジェクト内にCartfileを作成し下記のように記述をして下さい。
+
+★ Cartfileの記述
+
+```
+github "fumiyasac/handMadeCalendarAdvance"
+```
+
+参考：[Carthageを使った外部ライブラリ導入方法](http://swift.swift-studying.com/entry/2015/09/23/215356)
 
 ##### 手動での追加
 
@@ -221,7 +230,8 @@ print("2016年1月1日：\(result)")
 
 まだまだ甘い部分があるかもしれませんが、その際はPullRequest等を送っていただければ幸いです。アプリ開発の中でこのサンプルが少しでもお役にたつ事ができれば嬉しい限りです。
 
-+ 2016.12.29: Swift3系への対応を行いました。（Cathageへの対応はこれから行います。すみません）
++ 2016.12.31: 最新版をCocoaPods & Carthageへの対応を行いました。
++ 2016.12.29: Swift3系への対応を行いました。
 + 2016.10.13: Swift2.3及びSwift3.0ブランチ作成
 + 2016.09.03: CocoaPodsへの対応をしました（ドキュメント修正や追記含む）
 + 2016.05.28: READMEに追記をしました（Carthageで導入する際の手順や文章の修正等）
