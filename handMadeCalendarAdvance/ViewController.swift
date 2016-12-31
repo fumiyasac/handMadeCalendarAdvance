@@ -108,7 +108,7 @@ class ViewController: UIViewController {
     var dayCellLists: [String?] = []
 
     //日本の祝祭日判定用のインスタンス
-    var holidayObj: CalculateCalendarLogic = CalculateCalendarLogic()
+    let holidayObj: CalculateCalendarLogic = CalculateCalendarLogic()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -242,25 +242,25 @@ extension ViewController: UICollectionViewDataSource {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCell
 
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
 
             case 0:
 
                 //曜日を表示する
-                cell.textLabel!.text = CalendarSetting.weekList[(indexPath as NSIndexPath).row]
-                cell.textLabel!.textColor = CalendarSetting.getCalendarColor((indexPath as NSIndexPath).row, holiday: false)
+                cell.textLabel!.text = CalendarSetting.weekList[indexPath.row]
+                cell.textLabel!.textColor = CalendarSetting.getCalendarColor(indexPath.row, holiday: false)
                 return cell
 
             case 1:
 
                 //該当年月の日付を表示する
-                let day: String? = dayCellLists[(indexPath as NSIndexPath).row]
+                let day: String? = dayCellLists[indexPath.row]
 
                 if isCellUsing((indexPath as NSIndexPath).row) {
 
                     let holiday: Bool = holidayObj.judgeJapaneseHoliday(year: targetYear, month: targetMonth, day: Int(day!)!)
 
-                    cell.textLabel!.textColor = CalendarSetting.getCalendarColor((indexPath as NSIndexPath).row, holiday: holiday)
+                    cell.textLabel!.textColor = CalendarSetting.getCalendarColor(indexPath.row, holiday: holiday)
                     cell.textLabel!.text = day
 
                 } else {
@@ -284,10 +284,10 @@ extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         //日付が入るセルならば処理をする
-        if isCellUsing((indexPath as NSIndexPath).row) {
+        if isCellUsing(indexPath.row) {
 
-            let day: String? = dayCellLists[(indexPath as NSIndexPath).row]
-            print("\(targetYear)年\(targetMonth)月\(day!)日")
+            let day: String? = dayCellLists[indexPath.row]
+            print("\(targetYear!)年\(targetMonth!)月\(day!)日")
         }
     }
 
