@@ -13,7 +13,8 @@ Pod::Spec.new do |s|
   s.platform              = :ios, "8.0"
   s.source                = { :git => "https://github.com/fumiyasac/handMadeCalendarAdvance.git", :tag => "#{s.version}" }
   s.social_media_url      = "https://twitter.com/fumisac"
-  s.ios.deployment_target = '8.0'
-  s.source_files          = "CalculateCalendarLogic/*"
+  s.source_files          = "CalculateCalendarLogic/*.swift"
   s.requires_arc          = true
+  s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.10'
 end
