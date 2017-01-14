@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "31889CFD1E29F37F00DFD4CB"
-               BuildableName = "CalculateCalendarLogic OSX.framework"
+               BuildableName = "CalculateCalendarLogic.framework"
                BlueprintName = "CalculateCalendarLogic OSX"
                ReferencedContainer = "container:handMadeCalendarAdvance.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "31889CFD1E29F37F00DFD4CB"
-            BuildableName = "CalculateCalendarLogic OSX.framework"
+            BuildableName = "CalculateCalendarLogic.framework"
             BlueprintName = "CalculateCalendarLogic OSX"
             ReferencedContainer = "container:handMadeCalendarAdvance.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "31889CFD1E29F37F00DFD4CB"
-            BuildableName = "CalculateCalendarLogic OSX.framework"
+            BuildableName = "CalculateCalendarLogic.framework"
             BlueprintName = "CalculateCalendarLogic OSX"
             ReferencedContainer = "container:handMadeCalendarAdvance.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "31889CFD1E29F37F00DFD4CB"
-            BuildableName = "CalculateCalendarLogic OSX.framework"
+            BuildableName = "CalculateCalendarLogic.framework"
             BlueprintName = "CalculateCalendarLogic OSX"
             ReferencedContainer = "container:handMadeCalendarAdvance.xcodeproj">
          </BuildableReference>

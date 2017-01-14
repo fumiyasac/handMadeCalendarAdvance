@@ -27,9 +27,10 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 }
 ```
 
-### Requirements
+### Requirements & Support
 
-iOS8+
++ iOS8~10 or later
++ macOS 10.10 or later
 
 ### Installation
 
@@ -101,6 +102,7 @@ Special Thanks to
 + [akio0911](https://github.com/akio0911): Technical Support & Refactoring
 + [akuraru](https://github.com/akuraru): Refactoring & Bugfix
 + [keygx](https://github.com/keygx): How to use CocoaPods
++ [econa77](https://twitter.com/econa77): Mac OS 10.10 Support
 
 and more iOS developers.
 
@@ -143,9 +145,10 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 }
 ```
 
-### 対応バージョン
+### 対応バージョンとサポート
 
-IOS 8+
++ iOS 8~10 or later
++ macOS 10.10 or later
 
 ### 導入方法
 
@@ -230,6 +233,7 @@ print("2016年1月1日：\(result)")
 
 まだまだ甘い部分があるかもしれませんが、その際はPullRequest等を送っていただければ幸いです。アプリ開発の中でこのサンプルが少しでもお役にたつ事ができれば嬉しい限りです。
 
++ 2017.01.14: macOS10.10と以降バージョンへのサポートが可能になりました。
 + 2016.12.31: 最新版をCocoaPods & Carthageへの対応を行いました。
 + 2016.12.29: Swift3系への対応を行いました。
 + 2016.10.13: Swift2.3及びSwift3.0ブランチ作成
@@ -240,4 +244,4 @@ print("2016年1月1日：\(result)")
 
 ### 謝辞
 
-このライブラリの作成にあたり[akio0911](https://github.com/akio0911)さん、[akuraru](https://github.com/akuraru)さん、[keygx](https://github.com/keygx)さんに多くのお力添えを頂きまして誠にありがとうございました。
+このライブラリの作成にあたり[akio0911](https://github.com/akio0911)さん、[akuraru](https://github.com/akuraru)さん、[keygx](https://github.com/keygx)さん、+ [econa77](https://twitter.com/econa77)さんに多くのお力添えを頂きまして誠にありがとうございました。
