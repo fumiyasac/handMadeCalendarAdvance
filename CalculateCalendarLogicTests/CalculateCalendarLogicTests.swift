@@ -142,7 +142,9 @@ class CalculateCalendarLogicTests: XCTestCase {
                 //天皇誕生日: 2016年12月23日(土曜日)
                 (2017, 12, 23, true)
         ]
-        testCases.forEach { year, month, day, expected in
+        testCases.forEach { (arg) in
+            
+            let (year, month, day, expected) = arg
             let result = test.judgeJapaneseHoliday(year: year, month: month, day: day)
             guard let weekday = Weekday(year: year, month: month, day: day) else { XCTFail() ; return }
             let message = "\(year)年\(month)月\(day)日（\(weekday.longName)）：\(result)"
@@ -195,7 +197,9 @@ class CalculateCalendarLogicTests: XCTestCase {
                 (2021, 5, 6, false)
         ]
         
-        testCases.forEach { year, month, day, expected in
+        testCases.forEach { (arg) in
+            
+            let (year, month, day, expected) = arg
             let result = test.judgeJapaneseHoliday(year: year, month: month, day: day)
             guard let weekday = Weekday(year: year, month: month, day: day) else { XCTFail() ; return }
             let message = "\(year)年\(month)月\(day)日（\(weekday.longName)）：\(result)"
@@ -265,7 +269,9 @@ class CalculateCalendarLogicTests: XCTestCase {
             (2032, 9, 22, true),
             (2032, 9, 23, false),
             ]
-        testCases.forEach { year, month, day, expected in
+        testCases.forEach { (arg) in
+            
+            let (year, month, day, expected) = arg
             let result = test.judgeJapaneseHoliday(year: year, month: month, day: day)
             guard let weekday = Weekday(year: year, month: month, day: day) else { XCTFail() ; return }
             let message = "\(year)年\(month)月\(day)日（\(weekday.longName)）：\(result)"
@@ -288,7 +294,9 @@ class CalculateCalendarLogicTests: XCTestCase {
         let testCases: [(Int,Int,Int,Bool)] = [
             (2015, 9, 22, true),
             ]
-        testCases.forEach { year, month, day, expected in
+        testCases.forEach { (arg) in
+            
+            let (year, month, day, expected) = arg
             let result = test.judgeJapaneseHoliday(year: year, month: month, day: day)
             guard let weekday = Weekday(year: year, month: month, day: day) else { XCTFail() ; return }
             let message = "\(year)年\(month)月\(day)日（\(weekday.longName)）：\(result)"
@@ -436,7 +444,9 @@ class CalculateCalendarLogicTests: XCTestCase {
             (2030, 3, 20, true),
             (2030, 9, 23, true)
         ]
-        testCases.forEach { year, month, day, expected in
+        testCases.forEach { (arg) in
+            
+            let (year, month, day, expected) = arg
             let result = test.judgeJapaneseHoliday(year: year, month: month, day: day)
             guard let weekday = Weekday(year: year, month: month, day: day) else { XCTFail() ; return }
             let message = "\(year)年\(month)月\(day)日（\(weekday.longName)）：\(result)"
@@ -482,7 +492,9 @@ class CalculateCalendarLogicTests: XCTestCase {
             (2004, 7, 20, false),
             (2004, 7, 21, false),
         ]
-        testCases.forEach { year, month, day, expected in
+        testCases.forEach { (arg) in
+            
+            let (year, month, day, expected) = arg
             let result = test.judgeJapaneseHoliday(year: year, month: month, day: day)
             guard let weekday = Weekday(year: year, month: month, day: day) else { XCTFail() ; return }
             let message = "\(year)年\(month)月\(day)日（\(weekday.longName)）：\(result)"
@@ -514,8 +526,10 @@ class CalculateCalendarLogicTests: XCTestCase {
             (2020, 21),
             ]
         
-        testCases.forEach { year, expectedDay in
+        testCases.forEach { (arg) in
             // プロパティを確実に初期状態に戻してテストするため、このタイミングで毎回インスタンス化する
+            
+            let (year, expectedDay) = arg
             let test = CalculateCalendarLogic()
             
             let result = test.oldPeopleDay(year: year)
