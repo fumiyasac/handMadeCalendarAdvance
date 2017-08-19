@@ -11,41 +11,43 @@ import CalculateCalendarLogic
 
 //カレンダーに関する定数やメソッドを定義した構造体
 struct CalendarSetting {
-
+    
+    static let calendarCellName = "CalendarCell"
+    
     //カレンダーのセクション数やアイテム数に関するセッティング
     static let sectionCount = 2
-
-    static let firstSectionItemCount = 7
+    static let firstSectionItemCount  = 7
     static let secondSectionItemCount = 42
-
+    
+    fileprivate static let saturdayColor = UIColor(red: CGFloat(0.400), green: CGFloat(0.471), blue: CGFloat(0.980), alpha: CGFloat(1.0))
+    fileprivate static let holidayColor  = UIColor(red: CGFloat(0.831), green: CGFloat(0.349), blue: CGFloat(0.224), alpha: CGFloat(1.0))
+    fileprivate static let weekdayColor  = UIColor.darkGray
+    
     //カレンダーの日付に関するセッティング
-    static let weekList: [String] = ["日","月","火","水","木","金","土"]
-
-    //カレンダーのカラー表示に関するセッティング
-    static func getCalendarColor(_ weekdayIndex: Int, holiday: Bool) -> UIColor {
-
-        //日曜日または祝祭日の場合の色
-        if (weekdayIndex % 7 == Weekday.sun.rawValue || holiday == true) {
-
-            return UIColor(red: CGFloat(0.831), green: CGFloat(0.349), blue: CGFloat(0.224), alpha: CGFloat(1.0))
-
-        //土曜日の場合の色
-        } else if (weekdayIndex % 7 == Weekday.sat.rawValue) {
-
-            return  UIColor(red: CGFloat(0.400), green: CGFloat(0.471), blue: CGFloat(0.980), alpha: CGFloat(1.0))
-
-        //平日の場合の色
+    static let weekList: [String] = ["日", "月", "火", "水", "木", "金", "土"]
+    
+    //カレンダーのカラー表示に関するセッティング（①日曜日または祝祭日の場合の色・②土曜日の場合の色・③平日の場合の色の決定）
+    static func getCalendarColor(_ weekdayIndex: Int, isHoliday: Bool = false) -> UIColor {
+        if isSunday(weekdayIndex) || isHoliday {
+            return holidayColor
+        } else if isSaturday(weekdayIndex) {
+            return saturdayColor
         } else {
-
-            return UIColor.darkGray
+            return weekdayColor
         }
-        
+    }
+    
+    fileprivate static func isSunday(_ weekdayIndex: Int) -> Bool {
+        return (weekdayIndex % 7 == Weekday.sun.rawValue)
+    }
+    
+    fileprivate static func isSaturday(_ weekdayIndex: Int) -> Bool {
+        return (weekdayIndex % 7 == Weekday.sat.rawValue)
     }
 }
 
 //カレンダー表示＆計算用の値を取得するための構造体
 struct TargetDateSetting {
-
     static func getTargetYearAndMonthCalendar(_ year: Int, month: Int) -> (Int, Int) {
 
         /*************
@@ -53,7 +55,7 @@ struct TargetDateSetting {
          * 現在月の1日のdayOfWeek(曜日の値)を使ってカレンダーの始まる位置を決めるので'yyyy年mm月1日'のデータを作成する。
          *************/
 
-        //NSCalendarクラスのインスタンスを初期化する
+        //Calendarクラスのインスタンスを初期化した後に日付の情報を取得して、「①指定の年月の1日時点の日付・②日数を年と月」をタプルで返す
         let targetCalendar: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
         var targetComps: DateComponents = DateComponents()
 
@@ -63,28 +65,20 @@ struct TargetDateSetting {
 
         let targetDate: Date = targetCalendar.date(from: targetComps)!
         
-        //引数で渡されたNSCalendarクラスのインスタンスとNSDateクラスのインスタンスをもとに日付の情報を取得する
-        let range: NSRange = (targetCalendar as NSCalendar).range(of: NSCalendar.Unit.day, in: NSCalendar.Unit.month, for: targetDate)
-        
-        let comps: DateComponents = (targetCalendar as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day, NSCalendar.Unit.weekday],from: targetDate)
-        
-        //指定の年月の1日時点の日付と日数を取得してタプルで返す
-        return (Int(comps.weekday!), Int(range.length))
+        //引数で渡されたCalendarクラスのインスタンスとDateクラスのインスタンスをもとに日付の情報を取得して、指定の年月の1日時点の日付と日数を取得してタプルで返す
+        let range: Range = targetCalendar.range(of: .day, in: .month, for: targetDate)!
+        let comps: DateComponents = targetCalendar.dateComponents([.year, .month, .day, .weekday], from: targetDate)
+        return (Int(comps.weekday!), Int(range.count))
     }
 }
 
 //現在日付を取得するための構造体
 struct CurrentDateSetting {
-
-    static func getCurrentYearAndMonth() -> (Int, Int) {
+    static func getCurrentYearAndMonth() -> (targetYear: Int, targetMonth: Int) {
         
-        //NSCalendarクラスのインスタンスを初期化する
+        //Calendarクラスのインスタンスを初期化した後に日付の情報を取得して、年と月をタプルで返す
         let currentCalendar: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-        
-        //引数で渡されたNSCalendarクラスのインスタンスとNSDateクラスのインスタンスをもとに日付の情報を取得する
-        let comps: DateComponents = (currentCalendar as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month],from: Date())
-        
-        //年と月をタプルで返す
+        let comps: DateComponents = currentCalendar.dateComponents([.year, .month], from: Date())
         return (Int(comps.year!), Int(comps.month!))
     }
 }
@@ -92,8 +86,8 @@ struct CurrentDateSetting {
 class ViewController: UIViewController {
 
     //ラベルに表示するための年と月の変数
-    var targetYear: Int!  = CurrentDateSetting.getCurrentYearAndMonth().0
-    var targetMonth: Int! = CurrentDateSetting.getCurrentYearAndMonth().1
+    var targetYear: Int!  = CurrentDateSetting.getCurrentYearAndMonth().targetYear
+    var targetMonth: Int! = CurrentDateSetting.getCurrentYearAndMonth().targetMonth
 
     //カレンダー用のUICollectionView
     @IBOutlet weak var calendarCollectionView: UICollectionView!
@@ -114,7 +108,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         //Cellに使われるクラスを登録
-        calendarCollectionView.register(CalendarCell.self, forCellWithReuseIdentifier: "CalendarCell")
+        calendarCollectionView.register(CalendarCell.self, forCellWithReuseIdentifier: CalendarSetting.calendarCellName)
 
         //UICollectionViewDelegate,UICollectionViewDataSourceの拡張宣言
         calendarCollectionView.delegate = self
@@ -123,33 +117,23 @@ class ViewController: UIViewController {
         changeCalendar()
     }
 
-    //前の月のボタンが押された際のアクション
+    //前の月のボタンが押された際のアクション → 現在の月に対して-1をする
     @IBAction func displayPrevMonth(_ sender: AnyObject) {
-
-        //現在の月に対して-1をする
-        if (targetMonth == 1) {
-
+        if targetMonth == 1 {
             targetYear = targetYear - 1
             targetMonth = 12
-
         } else {
-
             targetMonth = targetMonth - 1
         }
         changeCalendar()
     }
 
-    //次の月のボタンが押された際のアクション
+    //次の月のボタンが押された際のアクション → 現在の月に対して+1をする
     @IBAction func displayNextMonth(_ sender: AnyObject) {
-
-        //現在の月に対して+1をする
-        if (targetMonth == 12) {
-
+        if targetMonth == 12 {
             targetYear = targetYear + 1
             targetMonth = 1
-
         } else {
-
             targetMonth = targetMonth + 1
         }
         changeCalendar()
@@ -169,12 +153,9 @@ class ViewController: UIViewController {
 
     //CollectionViewCellに格納する日のデータを作成する
     fileprivate func updateDataSource() {
-
         var day = 1
         dayCellLists = []
-
         for i in 0..<(CalendarSetting.secondSectionItemCount) {
-
             if isCellUsing(i) {
                 dayCellLists.append(String(day))
                 day += 1
@@ -189,21 +170,15 @@ class ViewController: UIViewController {
 
         //該当の年と月から1日の曜日と最大日数のタプルを取得する
         let targetConcern: (Int, Int) = TargetDateSetting.getTargetYearAndMonthCalendar(targetYear, month: targetMonth)
-
         let targetWeekdayIndex: Int = targetConcern.0
         let targetMaxDay: Int       = targetConcern.1
 
         //CollectionViewの該当セルインデックスに値が入るかを判定する
         if (index < targetWeekdayIndex - 1) {
-
             return false
-
         } else if (index == targetWeekdayIndex - 1 || index < targetWeekdayIndex + targetMaxDay - 1) {
-
             return true
-
         } else if (index == targetWeekdayIndex + targetMaxDay - 1 || index < CalendarSetting.secondSectionItemCount) {
-
             return false
         }
         return false
@@ -212,26 +187,28 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 }
 
 // MARK: - UICollectionViewDataSource
 
 extension ViewController: UICollectionViewDataSource {
-
+    
+    private enum indexType: Int {
+        case weekdayTitleArea     = 0
+        case calendarContentsArea = 1
+    }
+    
     //配置したCollectionViewのセクション数を返す
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-
         return CalendarSetting.sectionCount
     }
 
     //配置したCollectionViewの各セクションのアイテム数を返す
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         switch section {
-        case 0:
+        case indexType.weekdayTitleArea.rawValue:
             return CalendarSetting.firstSectionItemCount
-        case 1:
+        case indexType.calendarContentsArea.rawValue:
             return CalendarSetting.secondSectionItemCount
         default:
             return 0
@@ -239,36 +216,31 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCell
-
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarSetting.calendarCellName, for: indexPath) as! CalendarCell
         switch indexPath.section {
-
-            case 0:
-
+            case indexType.weekdayTitleArea.rawValue:
                 //曜日を表示する
-                cell.textLabel!.text = CalendarSetting.weekList[indexPath.row]
-                cell.textLabel!.textColor = CalendarSetting.getCalendarColor(indexPath.row, holiday: false)
+                cell.setCell(
+                    cellText: CalendarSetting.weekList[indexPath.row],
+                    cellTextColor: CalendarSetting.getCalendarColor(indexPath.row)
+                )
                 return cell
-
-            case 1:
-
+            case indexType.calendarContentsArea.rawValue:
                 //該当年月の日付を表示する
                 let day: String? = dayCellLists[indexPath.row]
-
-                if isCellUsing((indexPath as NSIndexPath).row) {
-
-                    let holiday: Bool = holidayObj.judgeJapaneseHoliday(year: targetYear, month: targetMonth, day: Int(day!)!)
-
-                    cell.textLabel!.textColor = CalendarSetting.getCalendarColor(indexPath.row, holiday: holiday)
-                    cell.textLabel!.text = day
-
+                if isCellUsing(indexPath.row) {
+                    let isHoliday: Bool = holidayObj.judgeJapaneseHoliday(year: targetYear, month: targetMonth, day: Int(day!)!)
+                    cell.setCell(
+                        cellText: day!,
+                        cellTextColor: CalendarSetting.getCalendarColor(indexPath.row, isHoliday: isHoliday)
+                    )
                 } else {
-
-                    cell.textLabel!.text = ""
+                    cell.setCell(
+                        cellText: "",
+                        cellTextColor: CalendarSetting.getCalendarColor(indexPath.row)
+                    )
                 }
                 return cell
-
             default:
                 return cell
         }
@@ -280,17 +252,13 @@ extension ViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension ViewController: UICollectionViewDelegate {
-
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
         //日付が入るセルならば処理をする
         if isCellUsing(indexPath.row) {
-
             let day: String? = dayCellLists[indexPath.row]
             print("\(targetYear!)年\(targetMonth!)月\(day!)日")
         }
     }
-
 }
 
 // MARK: - UIScrollViewDelegate
@@ -303,7 +271,6 @@ extension ViewController: UIScrollViewDelegate {
         let width: CGFloat = (collectionView.frame.size.width - CGFloat(1.0) * numberOfMargin) / CGFloat(7)
         let height: CGFloat = width * 1.0
         return CGSize(width: width, height: height)
-        
     }
     
     //セルの垂直方向のマージンを設定
