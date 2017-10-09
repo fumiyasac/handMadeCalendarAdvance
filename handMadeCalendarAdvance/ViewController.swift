@@ -275,12 +275,12 @@ extension ViewController: UIScrollViewDelegate {
     
     //セルの垂直方向のマージンを設定
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return CGFloat(1.0)
+        return 1.0
     }
     
     //セルの水平方向のマージンを設定
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return CGFloat(1.0)
+        return 1.0
     }
     
 }
