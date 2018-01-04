@@ -87,17 +87,61 @@ public struct CalculateCalendarLogic {
         
         var constant: Double {
             switch self {
-            case .spring: return 20.69115
-            case .autumn: return 23.09000
+            case .spring:
+                return 20.69115
+            case .autumn:
+                return 23.09000
             }
         }
-        
+
         /// 春分の日・秋分の日を計算する
         /// 参考：http://koyomi8.com/reki_doc/doc_0330.htm
         func calcDay(year: Int) -> Int {
-            let x1: Double = Double(year - 2000) * 0.242194
-            let x2: Int = Int(Double(year - 2000) / 4)
-            return Int(constant + x1 - Double(x2))
+
+            // 1999年以降の計算式
+            if year >= 2000 {
+
+                let x1: Double = Double(year - 2000) * 0.242194
+                let x2: Int = Int(Double(year - 2000) / 4)
+                return Int(constant + x1 - Double(x2))
+
+            // 1980年から1999年までの計算式
+            } else if year >= 1980 && 1999 >= year {
+
+                var newConstant: Double = 0.0000
+                if constant == SpringAutumn.spring.constant {
+                    newConstant = 20.8431
+                } else if constant == SpringAutumn.autumn.constant {
+                    newConstant = 23.2488
+                }
+
+                let x1: Double = Double(year - 1980) * 0.242194
+                let x2: Int = Int(Double(year - 1980) / 4)
+                return Int(newConstant + x1 - Double(x2))
+
+            // 1980以前の計算式
+            // （参考）http://www.asahi-net.or.jp/~ci5m-nmr/misc/equinox.html
+            } else {
+
+                var targetDay: Int = 0
+                if constant == SpringAutumn.spring.constant {
+
+                    if (year >= 1960 && year % 4 == 0) {
+                        targetDay = 20
+                    } else {
+                        targetDay = 21
+                    }
+
+                } else if constant == SpringAutumn.autumn.constant {
+
+                    if ((year - 3) % 4 == 0) {
+                        targetDay = 24
+                    } else {
+                        targetDay = 23
+                    }
+                }
+                return targetDay
+            }
         }
     }
     
@@ -191,6 +235,10 @@ public struct CalculateCalendarLogic {
                 return true
 
             //5月4日: (1)1988年以前は振替休日、(2).1988年から2006年まで国民の休日、2007年以降はみどりの日
+            case (year, 5, 4, _) where PublicHolidaysLawYear < year:
+                return true
+
+            /*
             case (year, 5, 4, .mon) where year < 1988:
                 return true
 
@@ -204,6 +252,7 @@ public struct CalculateCalendarLogic {
 
             case (year, 5, 4, _) where year > 2006:
                 return true
+            */
             
             //5月5日: 1949年からこどもの日
             case (year, 5, 5, _) where PublicHolidaysLawYear < year:
@@ -298,8 +347,8 @@ public struct CalculateCalendarLogic {
             //12月24日: 振替休日
             case (year, 12, 24, .mon) where year > 1989:
                 return true
-            
-            //※昔の祝日はこちら
+
+            //1999以前の祝日でその年限りに施行された祝日はこちら
             //4月10日: 1959年だけ皇太子明仁親王の結婚の儀
             case (1959, 4, 10, _):
                 return true
@@ -307,15 +356,15 @@ public struct CalculateCalendarLogic {
             //2月24日: 1989年だけ昭和天皇の大喪の礼
             case (1989, 2, 24, _):
                 return true
-            
-            //11月12日: 1989年だけ昭和天皇の大喪の礼
-            case (1989, 11, 12, _):
+
+            //11月12日: 1990年だけ即位礼正殿の儀
+            case (1990, 11, 12, _):
                 return true
-            
+
             //6月9日: 1993年だけ皇太子徳仁親王の結婚の儀
             case (1993, 6, 9, _):
                 return true
-            
+
             //祝祭日ではない時
             default:
                 return false
@@ -331,9 +380,12 @@ public struct CalculateCalendarLogic {
      */
     private func getGoldenWeekAlterHoliday(year: Int, weekday: Weekday) -> Bool {
         switch weekday {
-        case .mon, .tue,
-             .wed where 2007 <= year:
-            return true
+        case .mon, .tue, .wed:
+            if 2007 <= year {
+                return true
+            } else {
+                return false
+            }
         default:
             return false
         }
