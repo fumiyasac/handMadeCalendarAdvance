@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MonthlyCalendarViewController.swift
 //  handMadeCalendarAdvance
 //
 //  Created by 酒井文也 on 2016/04/23.
@@ -83,7 +83,7 @@ struct CurrentDateSetting {
     }
 }
 
-class ViewController: UIViewController {
+class MonthlyCalendarViewController: UIViewController {
 
     //ラベルに表示するための年と月の変数
     var targetYear: Int!  = CurrentDateSetting.getCurrentYearAndMonth().targetYear
@@ -191,7 +191,7 @@ class ViewController: UIViewController {
 
 // MARK: - UICollectionViewDataSource
 
-extension ViewController: UICollectionViewDataSource {
+extension MonthlyCalendarViewController: UICollectionViewDataSource {
     
     private enum indexType: Int {
         case weekdayTitleArea     = 0
@@ -251,7 +251,7 @@ extension ViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 
-extension ViewController: UICollectionViewDelegate {
+extension MonthlyCalendarViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //日付が入るセルならば処理をする
         if isCellUsing(indexPath.row) {
@@ -263,7 +263,7 @@ extension ViewController: UICollectionViewDelegate {
 
 // MARK: - UIScrollViewDelegate
 
-extension ViewController: UIScrollViewDelegate {
+extension MonthlyCalendarViewController: UIScrollViewDelegate {
     
     //セルのサイズを設定
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
