@@ -20,8 +20,8 @@ public enum Weekday: Int {
     case sun, mon, tue, wed, thu, fri, sat
 
     init?(year: Int, month: Int, day: Int) {
-        let cal = Calendar.current as NSCalendar
-        guard let date = cal.date(era: AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) else { return nil }
+        let cal = Calendar(identifier: .gregorian)
+        guard let date = cal.date(from: DateComponents(era: AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)) else { return nil }
         let weekdayNum = cal.component(.weekday, from: date)  // 1:日曜日 ～ 7:土曜日
         self.init(rawValue: weekdayNum - 1)
     }
@@ -159,9 +159,8 @@ public struct CalculateCalendarLogic {
      */
     public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
         
-        let cal = Calendar.current as NSCalendar
-        guard let date = cal.date(
-            era: AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) else {
+        let cal = Calendar(identifier: .gregorian)
+        guard let date = cal.date(from: DateComponents(era: AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)) else {
             fatalError() // FIXME: throwにしたほうがよい？
         }
         let weekdayNum = cal.component(.weekday, from: date) // 1:日曜日 ～ 7:土曜日
@@ -405,10 +404,10 @@ public struct CalculateCalendarLogic {
      * 指定した年の敬老の日を調べる
      */
     internal func oldPeopleDay(year: Int) -> Int {
-        let cal = Calendar.current as NSCalendar
+        let cal = Calendar(identifier: .gregorian)
         
         func dateFromDay(day: Int) -> NSDate? {
-            return cal.date(era: AD, year: year, month: 9, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0) as NSDate?
+            return cal.date(from: DateComponents(era: AD, year: year, month: 9, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)) as NSDate?
         }
         
         func weekdayAndDayFromDate(date: NSDate) -> (weekday: Int, day: Int) {
