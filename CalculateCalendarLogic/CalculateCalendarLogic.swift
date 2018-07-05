@@ -21,7 +21,14 @@ public enum Weekday: Int {
 
     init?(year: Int, month: Int, day: Int) {
         let cal = Calendar(identifier: .gregorian)
-        guard let date = cal.date(from: DateComponents(era: AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)) else { return nil }
+        guard let date = cal.date(from: DateComponents(era: AD,
+                                                       year: year,
+                                                       month: month,
+                                                       day: day,
+                                                       hour: 0,
+                                                       minute: 0,
+                                                       second: 0,
+                                                       nanosecond: 0)) else { return nil }
         let weekdayNum = cal.component(.weekday, from: date)  // 1:日曜日 ～ 7:土曜日
         self.init(rawValue: weekdayNum - 1)
     }
@@ -160,8 +167,15 @@ public struct CalculateCalendarLogic {
     public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
         
         let cal = Calendar(identifier: .gregorian)
-        guard let date = cal.date(from: DateComponents(era: AD, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)) else {
-            fatalError() // FIXME: throwにしたほうがよい？
+        guard let date = cal.date(from: DateComponents(era: AD,
+                                                       year: year,
+                                                       month: month,
+                                                       day: day,
+                                                       hour: 0,
+                                                       minute: 0,
+                                                       second: 0,
+                                                       nanosecond: 0)) else {
+                                                        fatalError() // FIXME: throwにしたほうがよい？
         }
         let weekdayNum = cal.component(.weekday, from: date) // 1:日曜日 ～ 7:土曜日
         
@@ -407,7 +421,14 @@ public struct CalculateCalendarLogic {
         let cal = Calendar(identifier: .gregorian)
         
         func dateFromDay(day: Int) -> NSDate? {
-            return cal.date(from: DateComponents(era: AD, year: year, month: 9, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)) as NSDate?
+            return cal.date(from: DateComponents(era: AD,
+                                                 year: year,
+                                                 month: 9,
+                                                 day: day,
+                                                 hour: 0,
+                                                 minute: 0,
+                                                 second: 0,
+                                                 nanosecond: 0)) as NSDate?
         }
         
         func weekdayAndDayFromDate(date: NSDate) -> (weekday: Int, day: Int) {
