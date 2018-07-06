@@ -441,7 +441,7 @@ public struct CalculateCalendarLogic {
         let monday = 2
         return (15...21)
             .map(dateFromDay)
-            .flatMap{ $0 }
+            .compactMap{ $0 }
             .map(weekdayAndDayFromDate)
             .filter{ $0.weekday == monday }
             .first!
