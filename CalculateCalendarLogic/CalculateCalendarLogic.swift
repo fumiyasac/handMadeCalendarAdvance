@@ -190,6 +190,12 @@ public struct CalculateCalendarLogic {
         /// 1973年の国民の祝日に関する法律が改正されたことにより制定
         /// See also: https://ja.wikipedia.org/wiki/%E6%8C%AF%E6%9B%BF%E4%BC%91%E6%97%A5
         let AlternateHolidaysLawYear = 1973
+        
+        /// 「国民の祝日」の特例が2018年（平成30年6月20日）に公布・施行された。
+        /// 2020年（平成32年）の東京オリンピック・パラリンピック競技大会の円滑な準備及び運営に資するため
+        /// 同年に限り「海の日」は7月23日、「体育の日（スポーツの日）」は7月24日、「山の日」は8月10日となる。
+        /// See also: http://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html
+        let SpecialProvisionYear = 2020
 
         /// （注意）春分の日・秋分の日は1948年以前も祝祭日であったが、このカレンダーロジックの基準は1948年〜を基準とするので考慮しない
         /// See also: https://ja.wikipedia.org/wiki/%E7%9A%87%E9%9C%8A%E7%A5%AD
@@ -221,6 +227,14 @@ public struct CalculateCalendarLogic {
             
             //2月12日: 振替休日
             case (year, 2, 12, .mon) where year >= AlternateHolidaysLawYear:
+                return true
+            
+            //2月23日(2020年から): 天皇誕生日
+            case (year, 2, 23, _) where year >= 2020:
+                return true
+            
+            //2月24日(2020年から): 天皇誕生日の振替休日
+            case (year, 2, 24, .mon) where year >= 2020:
                 return true
             
             //3月20日 or 21日: 春分の日(計算値によって算出)
@@ -275,23 +289,30 @@ public struct CalculateCalendarLogic {
             case (year, 5, 6, _) where year >= AlternateHolidaysLawYear && getGoldenWeekAlterHoliday(year: year, weekday: weekday):
                 return true
             
-            //(1).7月20日(1996年から2002年まで)、(2).7月の第3月曜日(2003年から): 海の日
+            //(1).7月20日(1996年から2002年まで)、(2).7月の第3月曜日(2003年から)、(3).7月23日(2020年のみ): 海の日
             case (1996...2002, 7, 20, _):
                 return true
             
-            //(2).7月の第3月曜日(2003年から): 海の日
-            case (year, 7, 15...21, .mon) where 2003 <= year:
+            case (year, 7, 15...21, .mon)
+                where 2003 <= year && year != SpecialProvisionYear:
+                return true
+            
+            case (SpecialProvisionYear, 7, 23, _):
                 return true
             
             //7月21日: 海の日の振替休日
             case (1996...2002, 7, 21, .mon):
                 return true
             
-            //8月11日: 2016年から山の日
-            case (year, 8, 11, _) where year > 2015:
+            //(1).8月11日(2016年から)、(2).8月10日(2020年のみ): 山の日
+            case (year, 8, 11, _)
+                where year > 2015 && year != SpecialProvisionYear:
                 return true
             
-            //8月12日: 振替休日
+            case (SpecialProvisionYear, 8, 10, _):
+                return true
+            
+            //8月12日: 山の日の振替休日
             case (year, 8, 12, .mon) where year > 2015:
                 return true
             
@@ -326,11 +347,15 @@ public struct CalculateCalendarLogic {
                     && getAlterHolidaySliverWeek(year: year) && year > 2008:
                 return true
             
-            //(1).10月10日(1966年から1999年まで)、(2).10月の第2月曜日(2000年から): 体育の日
+            //(1).10月10日(1966年から1999年まで)、(2).10月の第2月曜日(2000年から)、(3).7月24日(2020年のみ): 体育の日(スポーツの日)
             case (1966...1999, 10, 10, _):
                 return true
             
-            case (year, 10, 8...14, .mon) where year > 1999:
+            case (year, 10, 8...14, .mon)
+                where year > 1999 && year != SpecialProvisionYear:
+                return true
+            
+            case (SpecialProvisionYear, 7, 24, _):
                 return true
             
             //10月11日: 体育の日の振替休日
@@ -353,12 +378,12 @@ public struct CalculateCalendarLogic {
             case (year, 11, 24, .mon) where year >= AlternateHolidaysLawYear:
                 return true
             
-            //12月23日: 1989年から天皇誕生日
-            case (year, 12, 23, _) where year > 1989:
+            //12月23日(1989年から2018年まで): 天皇誕生日
+            case (1990...2018, 12, 23, _):
                 return true
             
-            //12月24日: 振替休日
-            case (year, 12, 24, .mon) where year > 1989:
+            //12月24日(1989年から2018年まで): 天皇誕生日の振替休日
+            case (1990...2018, 12, 24, .mon):
                 return true
 
             //1999以前の祝日でその年限りに施行された祝日はこちら
