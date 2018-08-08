@@ -29,7 +29,7 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 
 ### Requirements & Support
 
-+ iOS8~10 or later
++ iOS9 or later
 + macOS 10.10 or later
 
 ### Installation
@@ -43,7 +43,7 @@ Create Podfile and specify it in your Podfile:
 ★ Example of Podfile
 
 ```
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 target [YOUR PROJECT NAME]' do
   pod 'CalculateCalendarLogic'
@@ -103,6 +103,8 @@ Special Thanks to
 + [akuraru](https://github.com/akuraru): Refactoring & Bugfix
 + [keygx](https://github.com/keygx): How to use CocoaPods
 + [econa77](https://twitter.com/econa77): Mac OS 10.10 Support
++ [essochi](https://github.com/essochi): Ver0.1.7
++ [myammm](https://github.com/myammm): Ver0.2.0 
 
 and more iOS developers.
 
@@ -233,6 +235,8 @@ print("2016年1月1日：\(result)")
 
 まだまだ甘い部分があるかもしれませんが、その際はPullRequest等を送っていただければ幸いです。アプリ開発の中でこのサンプルが少しでもお役にたつ事ができれば嬉しい限りです。
 
++ 2018.08.08: 2020年のカレンダーへの対応を行いました（[myammm](https://github.com/myammm)様）。
++ 2018.07.04: Swift4.1及びXCode9.4への対応を行いました（[essochi](https://github.com/essochi)様）。
 + 2017.10.10: Swift4及びXCode9への対応を行いました。
 + 2017.01.14: macOS10.10と以降バージョンへのサポートが可能になりました。
 + 2016.12.31: 最新版をCocoaPods & Carthageへの対応を行いました。
@@ -246,3 +250,4 @@ print("2016年1月1日：\(result)")
 ### 謝辞
 
 このライブラリの作成にあたり[akio0911](https://github.com/akio0911)さん、[akuraru](https://github.com/akuraru)さん、[keygx](https://github.com/keygx)さん、+ [econa77](https://twitter.com/econa77)さんに多くのお力添えを頂きまして誠にありがとうございました。
+また、プルリクエスト等を定期的に頂けることで本当に助かっております。
