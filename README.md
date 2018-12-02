@@ -29,7 +29,7 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 
 ### Requirements & Support
 
-+ iOS9 or later
++ iOS 9 or later
 + macOS 10.10 or later
 
 ### Installation
@@ -149,7 +149,7 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 
 ### 対応バージョンとサポート
 
-+ iOS 8~10 or later
++ iOS 9 or later
 + macOS 10.10 or later
 
 ### 導入方法
@@ -235,6 +235,7 @@ print("2016年1月1日：\(result)")
 
 まだまだ甘い部分があるかもしれませんが、その際はPullRequest等を送っていただければ幸いです。アプリ開発の中でこのサンプルが少しでもお役にたつ事ができれば嬉しい限りです。
 
++ 2018.12.02: Swift4.2及びXcode10への対応を行いました。
 + 2018.08.08: 2020年のカレンダーへの対応を行いました（[myammm](https://github.com/myammm)様）。
 + 2018.07.04: Swift4.1及びXCode9.4への対応を行いました（[essochi](https://github.com/essochi)様）。
 + 2017.10.10: Swift4及びXCode9への対応を行いました。
