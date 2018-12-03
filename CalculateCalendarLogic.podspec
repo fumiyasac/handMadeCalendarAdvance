@@ -10,8 +10,7 @@ Pod::Spec.new do |s|
   s.homepage              = "http://qiita.com/fumiyasac@github/items/33bfc07ad36dfffcdf8f"
   s.license               = { :type => "MIT", :file => "LICENSE" }
   s.author                = { "Fumiya Sakai" => "fumiya.def.mathmatica@gmail.com" }
-  s.ios.platform          = :ios, '9.0'
-  s.osx.platform          = :osx, '10.10'
+  s.platform              = :ios, '9.0'
   s.source                = { :git => "https://github.com/fumiyasac/handMadeCalendarAdvance.git", :tag => "#{s.version}" }
   s.social_media_url      = "https://twitter.com/fumiyasac"
   s.source_files          = "CalculateCalendarLogic/*.swift"
