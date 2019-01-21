@@ -222,6 +222,11 @@ class CalculateCalendarLogicTests: XCTestCase {
                 // 昭和の日: 2019年4月29日(月曜日)
                 (2019,  4, 29, true),
                 
+                // 天皇即位の日に伴う10連休
+                (2019,  4,  30, true),
+                (2019,  5,  1, true),
+                (2019,  5,  2, true),
+
                 // 憲法記念日: 2019年5月3日(金曜日)
                 (2019,  5,  3, true),
                 
@@ -252,6 +257,9 @@ class CalculateCalendarLogicTests: XCTestCase {
                 // 体育の日: 2019年10月14日(月曜日)
                 (2019, 10, 14, true),
                 
+                // 即位礼正殿の儀: 2019年10月22日（火曜日）
+                (2019, 10, 22, true),
+
                 // 文化の日: 2019年11月3日(日曜日)
                 (2019, 11,  3, true),
                 
@@ -398,7 +406,7 @@ class CalculateCalendarLogicTests: XCTestCase {
                 (2017, 5, 6, false),
                 
                 //  2019年
-                (2019, 5, 2, false),
+                (2019, 5, 2, true),
                 (2019, 5, 3, true ),
                 (2019, 5, 4, true ),
                 (2019, 5, 5, true ),
