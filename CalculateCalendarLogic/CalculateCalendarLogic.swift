@@ -211,7 +211,6 @@ public struct CalculateCalendarLogic {
         /// 導入されたものであるが、5月4日に限らず、祝日と祝日に挟まれた平日を全て休日にする制度であることから、
         /// 後の祝日移動に伴い、5月以外の月にも国民の休日が現れることとなった。
         /// See also: https://ja.wikipedia.org/wiki/%E5%9B%BD%E6%B0%91%E3%81%AE%E4%BC%91%E6%97%A5
-        
         let nationalHolidaysStartYear = 1986
 
         switch (year, month, day, weekday) {
@@ -272,7 +271,7 @@ public struct CalculateCalendarLogic {
                 return true
             
             //2019年5月1日： 2019年だけ天皇の即位の日
-            case (emperorthroneYear, 5 , 1, _):
+            case (emperorthroneYear, 5, 1, _):
                 return true
 
             //5月3日: 1949年から憲法記念日
@@ -448,8 +447,7 @@ public struct CalculateCalendarLogic {
                     )
                     //前日と翌日が祝日の平日は国民の休日
                     return  isHolidayBegore && isHolidayNext
-                }
-                else {
+                } else {
                     return false
                 }
         }
