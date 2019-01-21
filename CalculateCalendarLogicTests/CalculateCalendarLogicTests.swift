@@ -223,9 +223,9 @@ class CalculateCalendarLogicTests: XCTestCase {
                 (2019,  4, 29, true),
                 
                 // 天皇即位の日に伴う10連休
-                (2019,  4,  30, true),
-                (2019,  5,  1, true),
-                (2019,  5,  2, true),
+                (2019, 4, 30, true),
+                (2019, 5, 1, true),
+                (2019, 5, 2, true),
 
                 // 憲法記念日: 2019年5月3日(金曜日)
                 (2019,  5,  3, true),

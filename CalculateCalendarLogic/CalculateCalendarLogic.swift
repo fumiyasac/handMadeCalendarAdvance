@@ -164,7 +164,10 @@ public struct CalculateCalendarLogic {
      * ※3. [Swift] 関数における引数/戻り値とタプルの関係：http://dev.classmethod.jp/smartphone/swift-function-tupsle/
      *
      */
-    public func judgeJapaneseHoliday(year: Int, month: Int, day: Int, checkNationalHoliday:Bool = true) -> Bool {
+    public func judgeJapaneseHoliday(year: Int,
+                                     month: Int,
+                                     day: Int,
+                                     checkNationalHoliday: Bool = true) -> Bool {
         
         let cal = Calendar(identifier: .gregorian)
         guard let date = cal.date(from: DateComponents(era: AD,
@@ -202,13 +205,15 @@ public struct CalculateCalendarLogic {
 
         /// 2019年天皇即位の年
         let emperorthroneYear = 2019
-        
+
         /// 国民の祝日適用年
-        /// 元々、5月上旬における飛石連休の解消・改善を望む当時の世論に応える形で1985年12月27日に祝日法が改正され、導入されたものであるが、5月4日に限らず、祝日と祝日に挟まれた平日を全て休日にする制度であることから、後の祝日移動に伴い、5月以外の月にも国民の休日が現れることとなった。
+        /// 元々、5月上旬における飛石連休の解消・改善を望む当時の世論に応える形で1985年12月27日に祝日法が改正され、
+        /// 導入されたものであるが、5月4日に限らず、祝日と祝日に挟まれた平日を全て休日にする制度であることから、
+        /// 後の祝日移動に伴い、5月以外の月にも国民の休日が現れることとなった。
         /// See also: https://ja.wikipedia.org/wiki/%E5%9B%BD%E6%B0%91%E3%81%AE%E4%BC%91%E6%97%A5
         
         let nationalHolidaysStartYear = 1986
-        
+
         switch (year, month, day, weekday) {
             
             //1月1日: 元旦
@@ -267,9 +272,9 @@ public struct CalculateCalendarLogic {
                 return true
             
             //2019年5月1日： 2019年だけ天皇の即位の日
-            case (emperorthroneYear,5,1,_):
+            case (emperorthroneYear, 5 , 1, _):
                 return true
-            
+
             //5月3日: 1949年から憲法記念日
             case (year, 5, 3, _) where PublicHolidaysLawYear < year:
                 return true
@@ -376,9 +381,9 @@ public struct CalculateCalendarLogic {
                 return true
             
             //2019年10月22日： 2019年だけ即位礼正殿の儀
-            case (emperorthroneYear,10,22,_):
+            case (emperorthroneYear, 10, 22, _):
                 return true
-            
+
             //11月3日: 1948年から文化の日
             case (year, 11, 3, _) where PublicHolidaysLawYear <= year:
                 return true
@@ -426,7 +431,7 @@ public struct CalculateCalendarLogic {
                     // 前日
                     let beforeDate = cal.date(byAdding: .day, value: -1, to: cal.startOfDay(for: date))
                     // 前日の祝日チェック
-                    let b1 = judgeJapaneseHoliday(
+                    let isHolidayBegore = judgeJapaneseHoliday(
                         year: cal.component(.year, from: beforeDate!),
                         month: cal.component(.month, from: beforeDate!),
                         day: cal.component(.day, from: beforeDate!),
@@ -435,18 +440,18 @@ public struct CalculateCalendarLogic {
                     // 翌日
                     let nextDate = cal.date(byAdding: .day, value: 1, to: cal.startOfDay(for: date))
                     // 翌日の祝日チェック
-                    let b2 = judgeJapaneseHoliday(
+                    let isHolidayNext = judgeJapaneseHoliday(
                         year: cal.component(.year, from: nextDate!),
                         month: cal.component(.month, from: nextDate!),
                         day: cal.component(.day, from: nextDate!),
                         checkNationalHoliday: false    //再帰呼び出しの場合は国民の休日チェックは行わない
                     )
                     //前日と翌日が祝日の平日は国民の休日
-                    return  b1 && b2
+                    return  isHolidayBegore && isHolidayNext
                 }
                 else {
                     return false
-            }
+                }
         }
     }
 
