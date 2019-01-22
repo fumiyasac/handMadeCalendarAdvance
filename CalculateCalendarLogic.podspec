@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.author                = { "Fumiya Sakai" => "fumiya.def.mathmatica@gmail.com" }
   s.platform              = :ios, '9.0'
   s.source                = { :git => "https://github.com/fumiyasac/handMadeCalendarAdvance.git", :tag => "#{s.version}" }
-  s.social_media_url      = "https://twitter.com/fumiyasa"
+  s.social_media_url      = "https://twitter.com/fumiyasac"
   s.source_files          = "CalculateCalendarLogic/*.swift"
   s.exclude_files         = "CalculateCalendarLogic/*.plist"
   s.requires_arc          = true
