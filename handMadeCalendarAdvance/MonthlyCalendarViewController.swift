@@ -261,26 +261,26 @@ extension MonthlyCalendarViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: - UIScrollViewDelegate
+// MARK: - UICollectionViewDelegateFlowLayout
 
-extension MonthlyCalendarViewController: UIScrollViewDelegate {
-    
+extension MonthlyCalendarViewController: UICollectionViewDelegateFlowLayout {
+
     //セルのサイズを設定
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfMargin: CGFloat = 8.0
-        let width: CGFloat = (collectionView.frame.size.width - CGFloat(1.0) * numberOfMargin) / CGFloat(7)
+        let width: CGFloat = (collectionView.frame.size.width - CGFloat(1.5) * numberOfMargin) / CGFloat(7)
         let height: CGFloat = width * 1.0
         return CGSize(width: width, height: height)
     }
     
     //セルの垂直方向のマージンを設定
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 1.0
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.5
     }
     
     //セルの水平方向のマージンを設定
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 1.0
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.5
     }
     
 }
