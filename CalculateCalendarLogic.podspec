@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "CalculateCalendarLogic"
-  s.version               = "0.2.4"
+  s.version               = "0.2.5"
   s.summary               = "This library CalculateCalendarLogic (sample project name is handMadeCalendarAdvance) can judge a holiday in Japan."
   s.description           = <<-DESC
                           This library 'CalculateCalendarLogic' can judge a holiday in Japan.
@@ -12,8 +12,9 @@ Pod::Spec.new do |s|
   s.author                = { "Fumiya Sakai" => "fumiya.def.mathmatica@gmail.com" }
   s.platform              = :ios, '9.0'
   s.source                = { :git => "https://github.com/fumiyasac/handMadeCalendarAdvance.git", :tag => "#{s.version}" }
-  s.social_media_url      = "https://twitter.com/fumiyasac"
+  s.social_media_url      = "https://twitter.com/fumiyasa"
   s.source_files          = "CalculateCalendarLogic/*.swift"
+  s.exclude_files         = "CalculateCalendarLogic/*.plist"
   s.requires_arc          = true
   s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.10'
