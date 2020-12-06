@@ -62,7 +62,8 @@ github "fumiyasac/handMadeCalendarAdvance"
 
 ##### Use Swift Package Manager
 
-Using Xcode, go to File -> Swift Packages -> Add Package Dependency and enter https://github.com/fumiyasac/handMadeCalendarAdvance
+Using Xcode, go to File -> Swift Packages -> Add Package Dependency and enter URL below:
+https://github.com/fumiyasac/handMadeCalendarAdvance
 
 ##### Manually
 
@@ -188,7 +189,8 @@ github "fumiyasac/handMadeCalendarAdvance"
 
 ##### Swift Package Managerでの追加
 
-お使いのXcodeで、「File -> Swift Packages -> Add Package Dependency」と進み、「https://github.com/fumiyasac/handMadeCalendarAdvance」を追加して下さい。
+お使いのXcodeで、「File -> Swift Packages -> Add Package Dependency」と進み、下記URLを追加して下さい。
+https://github.com/fumiyasac/handMadeCalendarAdvance
 
 ##### 手動での追加
 
