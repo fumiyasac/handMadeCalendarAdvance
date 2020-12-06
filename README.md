@@ -34,7 +34,7 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 
 ### Installation
 
-We can use this library with CocoaPods, Carthage, Manually.
+We can use this library with CocoaPods, Carthage, Swift Package Manager, Manually.
 
 ##### Use CocoaPods
 
@@ -59,6 +59,10 @@ Create Carthage and specify it in your Cartfile:
 ```
 github "fumiyasac/handMadeCalendarAdvance"
 ```
+
+##### Use Swift Package Manager
+
+Using Xcode, go to File -> Swift Packages -> Add Package Dependency and enter https://github.com/fumiyasac/handMadeCalendarAdvance
 
 ##### Manually
 
@@ -155,7 +159,7 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 
 ### 導入方法
 
-このライブラリはCocoaPods・Carthage及び手動での追加に対応しています。
+このライブラリはCocoaPods・Carthage・Swift Package Manager及び手動での追加に対応しています。
 
 ##### CocoaPodsでの追加
 
@@ -181,6 +185,10 @@ github "fumiyasac/handMadeCalendarAdvance"
 ```
 
 参考：[Carthageを使った外部ライブラリ導入方法](http://swift.swift-studying.com/entry/2015/09/23/215356)
+
+##### Swift Package Managerでの追加
+
+お使いのXcodeで、「File -> Swift Packages -> Add Package Dependency」と進み、「https://github.com/fumiyasac/handMadeCalendarAdvance」を追加して下さい。
 
 ##### 手動での追加
 
