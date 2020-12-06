@@ -189,7 +189,7 @@ github "fumiyasac/handMadeCalendarAdvance"
 
 ##### Swift Package Managerでの追加
 
-お使いのXcodeで、「File -> Swift Packages -> Add Package Dependency」と進み、下記URLを追加して下さい。
+お使いのXcodeで「File -> Swift Packages -> Add Package Dependency」と進み下記URLを入力してEnterキーを押下して下さい。
 https://github.com/fumiyasac/handMadeCalendarAdvance
 
 ##### 手動での追加
@@ -231,7 +231,7 @@ print("2016年1月1日：\(result)")
 
 現行プログラムでCalculateCalendarLogic.swiftで考慮したテストケースは下記の通りです。
 
-+ 今年(2016年)の祝祭日の判定が正しく行えていること
++ 今年(2016年〜2022年)の祝祭日の判定が正しく行えていること
 + ゴールデンウィークの判定が正しく行えていること(※サンプル：2017年/2019年/2021年)
 + シルバーウィークの判定が正しく行えていること(※サンプル：2015年/2026年/2032年)
 + 春分の日・秋分の日の判定が正しく行えていること(※サンプル：2000年〜2030年)
