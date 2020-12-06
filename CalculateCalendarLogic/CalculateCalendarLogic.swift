@@ -317,7 +317,7 @@ public struct CalculateCalendarLogic {
                 return true
             
             case (year, 7, 15...21, .mon)
-                where 2003 <= year && year != SpecialProvisionYear:
+                where 2003 <= year && year != SpecialProvisionYear && year != SpecialExtraProvisionYear:
                 return true
             
             case (SpecialProvisionYear, 7, 23, _):
@@ -332,7 +332,7 @@ public struct CalculateCalendarLogic {
             
             //(1).8月11日(2016年から)、(2).8月10日(2020年のみ)、(3).8月8日(2021年のみ ※8月9日振替休日): 山の日
             case (year, 8, 11, _)
-                where year > 2015 && year != SpecialProvisionYear:
+                where year > 2015 && year != SpecialProvisionYear && year != SpecialExtraProvisionYear:
                 return true
             
             case (SpecialProvisionYear, 8, 10, _):
@@ -384,7 +384,7 @@ public struct CalculateCalendarLogic {
                 return true
             
             case (year, 10, 8...14, .mon)
-                where year > 1999 && year != SpecialProvisionYear:
+                where year > 1999 && year != SpecialProvisionYear && year != SpecialExtraProvisionYear:
                 return true
             
             case (SpecialProvisionYear, 7, 24, _):
