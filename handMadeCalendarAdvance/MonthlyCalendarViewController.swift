@@ -18,14 +18,14 @@ struct CalendarSetting {
     static let sectionCount = 2
     static let firstSectionItemCount  = 7
     static let secondSectionItemCount = 42
-    
+
     private static let saturdayColor = UIColor(red: CGFloat(0.400), green: CGFloat(0.471), blue: CGFloat(0.980), alpha: CGFloat(1.0))
     private static let holidayColor  = UIColor(red: CGFloat(0.831), green: CGFloat(0.349), blue: CGFloat(0.224), alpha: CGFloat(1.0))
     private static let weekdayColor  = UIColor.darkGray
-    
+
     // カレンダーの日付に関するセッティング
     static let weekList: [String] = ["日", "月", "火", "水", "木", "金", "土"]
-    
+
     // カレンダーのカラー表示に関するセッティング（①日曜日または祝祭日の場合の色・②土曜日の場合の色・③平日の場合の色の決定）
     static func getCalendarColor(_ weekdayIndex: Int, isHoliday: Bool = false) -> UIColor {
         if isSunday(weekdayIndex) || isHoliday {
@@ -88,9 +88,15 @@ struct CurrentDateSetting {
 class MonthlyCalendarViewController: UIViewController {
 
     // ラベルに表示するための年と月の変数
-    var targetYear: Int!  = CurrentDateSetting.getCurrentYearAndMonth().targetYear
-    var targetMonth: Int! = CurrentDateSetting.getCurrentYearAndMonth().targetMonth
+    private var targetYear: Int!  = CurrentDateSetting.getCurrentYearAndMonth().targetYear
+    private var targetMonth: Int! = CurrentDateSetting.getCurrentYearAndMonth().targetMonth
 
+    // 該当年月の日のリスト
+    private var dayCellLists: [String?] = []
+
+    // 日本の祝祭日判定用のインスタンス
+    private let holidayObj: CalculateCalendarLogic = CalculateCalendarLogic()
+    
     // カレンダー用のUICollectionView
     @IBOutlet weak var calendarCollectionView: UICollectionView!
 
@@ -99,12 +105,6 @@ class MonthlyCalendarViewController: UIViewController {
     @IBOutlet weak var nextMonthButton: UIButton!
     @IBOutlet weak var currentMonthLabel: UILabel!
     @IBOutlet weak var backgroundView: UIView!
-
-    // 該当年月の日のリスト
-    var dayCellLists: [String?] = []
-
-    // 日本の祝祭日判定用のインスタンス
-    let holidayObj: CalculateCalendarLogic = CalculateCalendarLogic()
 
     override func viewDidLoad() {
         super.viewDidLoad()

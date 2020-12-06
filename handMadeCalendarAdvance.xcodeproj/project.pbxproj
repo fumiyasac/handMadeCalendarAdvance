@@ -20,6 +20,7 @@
 		DE73971A1CCB4EC100A9A222 /* handMadeCalendarAdvanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7397191CCB4EC100A9A222 /* handMadeCalendarAdvanceUITests.swift */; };
 		DEE369B4257C8A1600A22800 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE369B3257C8A1600A22800 /* MainViewController.swift */; };
 		DEE369C3257C8E5A00A22800 /* DatePickerCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE369C2257C8E5A00A22800 /* DatePickerCalendarViewController.swift */; };
+		DEE369D1257CCD3400A22800 /* DisplayDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE369D0257CCD3400A22800 /* DisplayDateTextField.swift */; };
 		E517AF4D1CE0F63C006847A0 /* CalculateCalendarLogic.h in Headers */ = {isa = PBXBuildFile; fileRef = E517AF4C1CE0F63C006847A0 /* CalculateCalendarLogic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E517AF541CE0F63C006847A0 /* CalculateCalendarLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E517AF4A1CE0F63C006847A0 /* CalculateCalendarLogic.framework */; };
 		E517AF5B1CE0F63C006847A0 /* CalculateCalendarLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E517AF5A1CE0F63C006847A0 /* CalculateCalendarLogicTests.swift */; };
@@ -106,6 +107,7 @@
 		DE73971B1CCB4EC100A9A222 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEE369B3257C8A1600A22800 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		DEE369C2257C8E5A00A22800 /* DatePickerCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCalendarViewController.swift; sourceTree = "<group>"; };
+		DEE369D0257CCD3400A22800 /* DisplayDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDateTextField.swift; sourceTree = "<group>"; };
 		E517AF4A1CE0F63C006847A0 /* CalculateCalendarLogic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CalculateCalendarLogic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E517AF4C1CE0F63C006847A0 /* CalculateCalendarLogic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculateCalendarLogic.h; sourceTree = "<group>"; };
 		E517AF4E1CE0F63C006847A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				DE0166BB1CDE5892002BB133 /* CalendarCell.swift */,
+				DEE369D0257CCD3400A22800 /* DisplayDateTextField.swift */,
 			);
 			name = Component;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEE369D1257CCD3400A22800 /* DisplayDateTextField.swift in Sources */,
 				DEE369C3257C8E5A00A22800 /* DatePickerCalendarViewController.swift in Sources */,
 				DE7396FC1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift in Sources */,
 				DE7396FA1CCB4EC100A9A222 /* AppDelegate.swift in Sources */,
