@@ -8,7 +8,8 @@ let package = Package(
     products: [
         .library(
             name: "CalculateCalendarLogic",
-            targets: ["CalculateCalendarLogic"]),
+            targets: ["CalculateCalendarLogic"]
+        )
     ],
     targets: [
         .target(
