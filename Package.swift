@@ -13,11 +13,12 @@ let package = Package(
     targets: [
         .target(
             name: "CalculateCalendarLogic",
-            path: "CalculateCalendarLogic",
+            path: "CalculateCalendarLogic"
         ),
         .testTarget(
             name: "CalculateCalendarLogicTests",
-            dependencies: ["CalculateCalendarLogic"]),
+            dependencies: ["CalculateCalendarLogic"]
+        )
     ],
     swiftLanguageVersions: [.v5]
 )
