@@ -10,12 +10,11 @@ let package = Package(
             name: "CalculateCalendarLogic",
             targets: ["CalculateCalendarLogic"]),
     ],
-    dependencies: [],
     targets: [
         .target(
             name: "CalculateCalendarLogic",
             path: "CalculateCalendarLogic",
-            dependencies: []),
+        ),
         .testTarget(
             name: "CalculateCalendarLogicTests",
             dependencies: ["CalculateCalendarLogic"]),
