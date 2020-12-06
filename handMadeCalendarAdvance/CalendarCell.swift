@@ -29,10 +29,11 @@ class CalendarCell: UICollectionViewCell {
     func setCell(cellText: String, cellTextColor: UIColor) {
         textLabel?.text = cellText
         textLabel?.textColor = cellTextColor
+        textLabel?.font = UIFont.systemFont(ofSize: 13.0)
     }
 
     //UIや見た目に関連する部分の初期化用メソッド
-    fileprivate func initCommon() {
+    private func initCommon() {
         
         //UILabelを生成
         textLabel = UILabel(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
