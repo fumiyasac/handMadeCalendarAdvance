@@ -18,6 +18,9 @@
 		DE7397041CCB4EC100A9A222 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE7397021CCB4EC100A9A222 /* LaunchScreen.storyboard */; };
 		DE73970F1CCB4EC100A9A222 /* handMadeCalendarAdvanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE73970E1CCB4EC100A9A222 /* handMadeCalendarAdvanceTests.swift */; };
 		DE73971A1CCB4EC100A9A222 /* handMadeCalendarAdvanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7397191CCB4EC100A9A222 /* handMadeCalendarAdvanceUITests.swift */; };
+		DEE369B4257C8A1600A22800 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE369B3257C8A1600A22800 /* MainViewController.swift */; };
+		DEE369C3257C8E5A00A22800 /* DatePickerCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE369C2257C8E5A00A22800 /* DatePickerCalendarViewController.swift */; };
+		DEE369D1257CCD3400A22800 /* DisplayDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE369D0257CCD3400A22800 /* DisplayDateTextField.swift */; };
 		E517AF4D1CE0F63C006847A0 /* CalculateCalendarLogic.h in Headers */ = {isa = PBXBuildFile; fileRef = E517AF4C1CE0F63C006847A0 /* CalculateCalendarLogic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E517AF541CE0F63C006847A0 /* CalculateCalendarLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E517AF4A1CE0F63C006847A0 /* CalculateCalendarLogic.framework */; };
 		E517AF5B1CE0F63C006847A0 /* CalculateCalendarLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E517AF5A1CE0F63C006847A0 /* CalculateCalendarLogicTests.swift */; };
@@ -102,6 +105,9 @@
 		DE7397151CCB4EC100A9A222 /* handMadeCalendarAdvanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = handMadeCalendarAdvanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7397191CCB4EC100A9A222 /* handMadeCalendarAdvanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = handMadeCalendarAdvanceUITests.swift; sourceTree = "<group>"; };
 		DE73971B1CCB4EC100A9A222 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEE369B3257C8A1600A22800 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		DEE369C2257C8E5A00A22800 /* DatePickerCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCalendarViewController.swift; sourceTree = "<group>"; };
+		DEE369D0257CCD3400A22800 /* DisplayDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDateTextField.swift; sourceTree = "<group>"; };
 		E517AF4A1CE0F63C006847A0 /* CalculateCalendarLogic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CalculateCalendarLogic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E517AF4C1CE0F63C006847A0 /* CalculateCalendarLogic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculateCalendarLogic.h; sourceTree = "<group>"; };
 		E517AF4E1CE0F63C006847A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				DE0166BB1CDE5892002BB133 /* CalendarCell.swift */,
+				DEE369D0257CCD3400A22800 /* DisplayDateTextField.swift */,
 			);
 			name = Component;
 			sourceTree = "<group>";
@@ -205,8 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				DE0166BA1CDE40DC002BB133 /* Component */,
+				DEE369BB257C8B5600A22800 /* ViewController */,
 				DE7396F91CCB4EC100A9A222 /* AppDelegate.swift */,
-				DE7396FB1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift */,
 				DE7396FD1CCB4EC100A9A222 /* Main.storyboard */,
 				DE7397001CCB4EC100A9A222 /* Assets.xcassets */,
 				DE7397021CCB4EC100A9A222 /* LaunchScreen.storyboard */,
@@ -231,6 +238,16 @@
 				DE73971B1CCB4EC100A9A222 /* Info.plist */,
 			);
 			path = handMadeCalendarAdvanceUITests;
+			sourceTree = "<group>";
+		};
+		DEE369BB257C8B5600A22800 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DEE369B3257C8A1600A22800 /* MainViewController.swift */,
+				DE7396FB1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift */,
+				DEE369C2257C8E5A00A22800 /* DatePickerCalendarViewController.swift */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 		E517AF4B1CE0F63C006847A0 /* CalculateCalendarLogic */ = {
@@ -587,9 +604,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEE369D1257CCD3400A22800 /* DisplayDateTextField.swift in Sources */,
+				DEE369C3257C8E5A00A22800 /* DatePickerCalendarViewController.swift in Sources */,
 				DE7396FC1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift in Sources */,
 				DE7396FA1CCB4EC100A9A222 /* AppDelegate.swift in Sources */,
 				DE0166BC1CDE5892002BB133 /* CalendarCell.swift in Sources */,
+				DEE369B4257C8A1600A22800 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,7 +723,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -732,7 +752,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

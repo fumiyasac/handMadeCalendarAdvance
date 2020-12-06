@@ -178,7 +178,7 @@ public struct CalculateCalendarLogic {
                                                        minute: 0,
                                                        second: 0,
                                                        nanosecond: 0)) else {
-                                                        fatalError() // FIXME: throwにしたほうがよい？
+                                                        fatalError("date is invalid.")
         }
         let weekdayNum = cal.component(.weekday, from: date) // 1:日曜日 ～ 7:土曜日
         
@@ -199,6 +199,12 @@ public struct CalculateCalendarLogic {
         /// 同年に限り「海の日」は7月23日、「体育の日（スポーツの日）」は7月24日、「山の日」は8月10日となる。
         /// See also: http://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html
         let SpecialProvisionYear = 2020
+
+        /// 「国民の祝日」の特例が2020年（平成32年12月2日）に公布・施行された。
+        /// 令和3年（2021年）に限り「海の日」は7月22日、「スポーツの日」は7月23日、「山の日」は8月8日となる。
+        /// ※ 国民の祝日に関する法律第3条第2項の規定に基づき、8月9日は休日となります。
+        /// See also: http://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html
+        let SpecialExtraProvisionYear = 2021
 
         /// （注意）春分の日・秋分の日は1948年以前も祝祭日であったが、このカレンダーロジックの基準は1948年〜を基準とするので考慮しない
         /// See also: https://ja.wikipedia.org/wiki/%E7%9A%87%E9%9C%8A%E7%A5%AD
@@ -306,29 +312,38 @@ public struct CalculateCalendarLogic {
             case (year, 5, 6, _) where year >= AlternateHolidaysLawYear && getGoldenWeekAlterHoliday(year: year, weekday: weekday):
                 return true
             
-            //(1).7月20日(1996年から2002年まで)、(2).7月の第3月曜日(2003年から)、(3).7月23日(2020年のみ): 海の日
+            //(1).7月20日(1996年から2002年まで)、(2).7月の第3月曜日(2003年から)、(3).7月23日(2020年のみ)、(4).7月22日(2021年のみ): 海の日
             case (1996...2002, 7, 20, _):
                 return true
             
             case (year, 7, 15...21, .mon)
-                where 2003 <= year && year != SpecialProvisionYear:
+                where 2003 <= year && year != SpecialProvisionYear && year != SpecialExtraProvisionYear:
                 return true
             
             case (SpecialProvisionYear, 7, 23, _):
                 return true
-            
+ 
+            case (SpecialExtraProvisionYear, 7, 22, _):
+                return true
+
             //7月21日: 海の日の振替休日
             case (1996...2002, 7, 21, .mon):
                 return true
             
-            //(1).8月11日(2016年から)、(2).8月10日(2020年のみ): 山の日
+            //(1).8月11日(2016年から)、(2).8月10日(2020年のみ)、(3).8月8日(2021年のみ ※8月9日振替休日): 山の日
             case (year, 8, 11, _)
-                where year > 2015 && year != SpecialProvisionYear:
+                where year > 2015 && year != SpecialProvisionYear && year != SpecialExtraProvisionYear:
                 return true
             
             case (SpecialProvisionYear, 8, 10, _):
                 return true
             
+            case (SpecialExtraProvisionYear, 8, 8, _):
+                return true
+
+            case (SpecialExtraProvisionYear, 8, 9, .mon):
+                return true
+
             //8月12日: 山の日の振替休日
             case (year, 8, 12, .mon) where year > 2015:
                 return true
@@ -364,17 +379,20 @@ public struct CalculateCalendarLogic {
                     && getAlterHolidaySliverWeek(year: year) && year > 2008:
                 return true
             
-            //(1).10月10日(1966年から1999年まで)、(2).10月の第2月曜日(2000年から)、(3).7月24日(2020年のみ): 体育の日(スポーツの日)
+            //(1).10月10日(1966年から1999年まで)、(2).10月の第2月曜日(2000年から)、(3).7月24日(2020年のみ)、(4).7月23日(2021年のみ): 体育の日(スポーツの日)
             case (1966...1999, 10, 10, _):
                 return true
             
             case (year, 10, 8...14, .mon)
-                where year > 1999 && year != SpecialProvisionYear:
+                where year > 1999 && year != SpecialProvisionYear && year != SpecialExtraProvisionYear:
                 return true
             
             case (SpecialProvisionYear, 7, 24, _):
                 return true
-            
+
+            case (SpecialExtraProvisionYear, 7, 23, _):
+                return true
+
             //10月11日: 体育の日の振替休日
             case (1966...1999, 10, 11, .mon):
                 return true
