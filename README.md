@@ -266,5 +266,9 @@ print("2016年1月1日：\(result)")
 
 ### 謝辞
 
-このライブラリの作成にあたり[akio0911](https://github.com/akio0911)様、[akuraru](https://github.com/akuraru)様、[keygx](https://github.com/keygx)様、[econa77](https://twitter.com/econa77)様、[kazuomatz](https://github.com/kazuomatz)様、[essochi](https://github.com/essochi)様、[myammm](https://github.com/myammm)様、[uhooi](https://github.com/uhooi)をはじめ皆様からの多くのアドバイスやお力添えを頂きまして誠にありがとうございました。
+このライブラリの作成にあたり[akio0911](https://github.com/akio0911)様、[akuraru](https://github.com/akuraru)様、[keygx](https://github.com/keygx)様、[econa77](https://twitter.com/econa77)様、[kazuomatz](https://github.com/kazuomatz)様、[essochi](https://github.com/essochi)様、[myammm](https://github.com/myammm)様、[uhooi](https://github.com/uhooi)様をはじめ皆様からの多くのアドバイスやお力添えを頂きまして誠にありがとうございました。
 また、プルリクエスト等を定期的に頂けることで本当に助かっております。
+
+### 参考
+
++ [内閣府ホームページ](https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html)
