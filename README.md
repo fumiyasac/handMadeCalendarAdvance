@@ -29,8 +29,8 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 
 ### Requirements & Support
 
-+ iOS 9 or later
-+ macOS 10.10 or later
++ iOS 13.0 or later
++ macOS 11.0 or later
 
 ### Installation
 
@@ -43,7 +43,7 @@ Create Podfile and specify it in your Podfile:
 ★ Example of Podfile
 
 ```
-platform :ios, '9.0'
+platform :ios, '13.0'
 use_frameworks!
 target [YOUR PROJECT NAME]' do
   pod 'CalculateCalendarLogic'
@@ -156,8 +156,8 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 
 ### 対応バージョンとサポート
 
-+ iOS 9 or later
-+ macOS 10.10 or later
++ iOS 13.0 or later
++ macOS 11.0 or later
 
 ### 導入方法
 
@@ -247,6 +247,7 @@ print("2016年1月1日：\(result)")
 
 まだまだ甘い部分があるかもしれませんが、その際はPullRequest等を送っていただければ幸いです。アプリ開発の中でこのサンプルが少しでもお役にたつ事ができれば嬉しい限りです。
 
++ 2023.01.01: 保守対応＆iOS16で利用可能なUICalendarViewのサンプル追加を行いました。
 + 2021.06.05: Gihub Actions追加（[uhooi](https://github.com/uhooi)様）
 + 2020.12.02: Xcode12.2への対応/2021年の祝日に関する追加対応/サンプルコード修正等を行いました。
 + 2019.06.26: Swift5.0及びXcode10.2.1への対応を行いました。

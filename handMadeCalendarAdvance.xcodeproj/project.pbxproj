@@ -11,6 +11,7 @@
 		31889D151E29F3B600DFD4CB /* CalculateCalendarLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E517AF681CE0F669006847A0 /* CalculateCalendarLogic.swift */; };
 		31889D161E29F3BC00DFD4CB /* CalculateCalendarLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E517AF5A1CE0F63C006847A0 /* CalculateCalendarLogicTests.swift */; };
 		DE0166BC1CDE5892002BB133 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0166BB1CDE5892002BB133 /* CalendarCell.swift */; };
+		DE03CFF329608C650054BCF1 /* NewCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE03CFF229608C650054BCF1 /* NewCalendarViewController.swift */; };
 		DE7396FA1CCB4EC100A9A222 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7396F91CCB4EC100A9A222 /* AppDelegate.swift */; };
 		DE7396FC1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7396FB1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift */; };
 		DE7396FF1CCB4EC100A9A222 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE7396FD1CCB4EC100A9A222 /* Main.storyboard */; };
@@ -92,6 +93,7 @@
 		31889CFE1E29F37F00DFD4CB /* CalculateCalendarLogic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CalculateCalendarLogic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31889D061E29F37F00DFD4CB /* CalculateCalendarLogic OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CalculateCalendarLogic OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE0166BB1CDE5892002BB133 /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		DE03CFF229608C650054BCF1 /* NewCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCalendarViewController.swift; sourceTree = "<group>"; };
 		DE7396F61CCB4EC100A9A222 /* handMadeCalendarAdvance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = handMadeCalendarAdvance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7396F91CCB4EC100A9A222 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE7396FB1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				DEE369B3257C8A1600A22800 /* MainViewController.swift */,
 				DE7396FB1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift */,
 				DEE369C2257C8E5A00A22800 /* DatePickerCalendarViewController.swift */,
+				DE03CFF229608C650054BCF1 /* NewCalendarViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -266,7 +269,8 @@
 				E517AF5A1CE0F63C006847A0 /* CalculateCalendarLogicTests.swift */,
 				E517AF5C1CE0F63C006847A0 /* Info.plist */,
 			);
-			path = CalculateCalendarLogicTests;
+			name = CalculateCalendarLogicTests;
+			path = Tests/CalculateCalendarLogicTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -606,6 +610,7 @@
 			files = (
 				DEE369D1257CCD3400A22800 /* DisplayDateTextField.swift in Sources */,
 				DEE369C3257C8E5A00A22800 /* DatePickerCalendarViewController.swift in Sources */,
+				DE03CFF329608C650054BCF1 /* NewCalendarViewController.swift in Sources */,
 				DE7396FC1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift in Sources */,
 				DE7396FA1CCB4EC100A9A222 /* AppDelegate.swift in Sources */,
 				DE0166BC1CDE5892002BB133 /* CalendarCell.swift in Sources */,
@@ -767,9 +772,9 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = CalculateCalendarLogicTests/Info.plist;
+				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.just1factory.CalculateCalendarLogic-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -787,9 +792,9 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = CalculateCalendarLogicTests/Info.plist;
+				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.just1factory.CalculateCalendarLogic-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -939,6 +944,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = handMadeCalendarAdvanceTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.handMadeCalendarAdvanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -952,6 +958,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = handMadeCalendarAdvanceTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.handMadeCalendarAdvanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1036,7 +1043,8 @@
 		E517AF631CE0F63D006847A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = CalculateCalendarLogicTests/Info.plist;
+				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.CalculateCalendarLogicTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1048,7 +1056,8 @@
 		E517AF641CE0F63D006847A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = CalculateCalendarLogicTests/Info.plist;
+				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.CalculateCalendarLogicTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

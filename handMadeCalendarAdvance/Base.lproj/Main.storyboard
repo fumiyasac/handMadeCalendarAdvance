@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cfe-wA-4Zw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cfe-wA-4Zw">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--New Calendar View Controller-->
+        <scene sceneID="njV-Tr-RAR">
+            <objects>
+                <viewController id="75R-OU-rtO" customClass="NewCalendarViewController" customModule="handMadeCalendarAdvance" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LB1-4L-th2"/>
+                        <viewControllerLayoutGuide type="bottom" id="g1T-hF-7QW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xpE-jy-N8k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hRu-BS-jSa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cFQ-kA-PAq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="188" y="1372"/>
+        </scene>
         <!--Monthly Calendar-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -155,7 +174,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfB-h8-RPE">
-                                <rect key="frame" x="40" y="527" width="295" height="46"/>
+                                <rect key="frame" x="40" y="457" width="295" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="c1u-ct-QLn"/>
                                 </constraints>
@@ -165,7 +184,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ef7-UE-NXz">
-                                <rect key="frame" x="40" y="597" width="295" height="46"/>
+                                <rect key="frame" x="40" y="527" width="295" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="wPa-bB-MZN"/>
                                 </constraints>
@@ -174,14 +193,27 @@
                                     <segue destination="Dgv-72-JLk" kind="show" identifier="DatePickerCalendar" id="8AT-wM-OOd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9p-PJ-xVP">
+                                <rect key="frame" x="40" y="597" width="295" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="ESw-re-pwc"/>
+                                </constraints>
+                                <state key="normal" title="3. UICalendarView表示型のサンプル"/>
+                                <connections>
+                                    <segue destination="75R-OU-rtO" kind="show" id="lbk-cB-2m7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vfB-h8-RPE" firstAttribute="leading" secondItem="GNX-EP-Rxi" secondAttribute="leadingMargin" constant="24" id="06O-s0-xt8"/>
-                            <constraint firstItem="ZRy-ep-y9a" firstAttribute="top" secondItem="ef7-UE-NXz" secondAttribute="bottom" constant="24" id="MyE-Us-7oD"/>
+                            <constraint firstItem="J9p-PJ-xVP" firstAttribute="top" secondItem="ef7-UE-NXz" secondAttribute="bottom" constant="24" id="JlU-x7-3C5"/>
                             <constraint firstItem="ef7-UE-NXz" firstAttribute="top" secondItem="vfB-h8-RPE" secondAttribute="bottom" constant="24" id="RTt-Ox-he6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ef7-UE-NXz" secondAttribute="trailing" constant="24" id="Zt7-5N-QMM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="J9p-PJ-xVP" secondAttribute="trailing" constant="24" id="cKU-yd-qnb"/>
+                            <constraint firstItem="ZRy-ep-y9a" firstAttribute="top" secondItem="J9p-PJ-xVP" secondAttribute="bottom" constant="24" id="hXp-3P-6UE"/>
                             <constraint firstItem="bEI-s2-Nac" firstAttribute="top" secondItem="ajf-0f-OaZ" secondAttribute="bottom" constant="24" id="qgn-p6-5id"/>
+                            <constraint firstItem="J9p-PJ-xVP" firstAttribute="leading" secondItem="GNX-EP-Rxi" secondAttribute="leadingMargin" constant="24" id="rRt-1k-O39"/>
                             <constraint firstItem="bEI-s2-Nac" firstAttribute="centerX" secondItem="GNX-EP-Rxi" secondAttribute="centerX" id="rid-0d-zWp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vfB-h8-RPE" secondAttribute="trailing" constant="24" id="tuG-77-r22"/>
                             <constraint firstItem="ef7-UE-NXz" firstAttribute="leading" secondItem="GNX-EP-Rxi" secondAttribute="leadingMargin" constant="24" id="xRM-dF-i2g"/>
