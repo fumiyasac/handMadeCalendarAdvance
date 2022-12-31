@@ -266,7 +266,8 @@
 				E517AF5A1CE0F63C006847A0 /* CalculateCalendarLogicTests.swift */,
 				E517AF5C1CE0F63C006847A0 /* Info.plist */,
 			);
-			path = CalculateCalendarLogicTests;
+			name = CalculateCalendarLogicTests;
+			path = Tests/CalculateCalendarLogicTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -767,7 +768,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = CalculateCalendarLogicTests/Info.plist;
+				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.just1factory.CalculateCalendarLogic-OSXTests";
@@ -787,7 +788,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = CalculateCalendarLogicTests/Info.plist;
+				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.just1factory.CalculateCalendarLogic-OSXTests";
@@ -1036,7 +1037,7 @@
 		E517AF631CE0F63D006847A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = CalculateCalendarLogicTests/Info.plist;
+				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.CalculateCalendarLogicTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1048,7 +1049,7 @@
 		E517AF641CE0F63D006847A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = CalculateCalendarLogicTests/Info.plist;
+				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.CalculateCalendarLogicTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
