@@ -59,7 +59,7 @@ class NewCalendarViewController: UIViewController {
 extension NewCalendarViewController: UICalendarViewDelegate {
 
     // CalendarViewに適用する装飾を決定する
-    // 👉 このコードでは祝祭日の部分にオレンジの🗓マークを付与する
+    // 👉 このコードでは祝祭日の部分にオレンジの🏴マークを付与する
     // 参考: https://www.fuwamaki.com/article/353
     @available(iOS 16.0, *)
     func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
@@ -69,7 +69,7 @@ extension NewCalendarViewController: UICalendarViewDelegate {
             return nil
         }
         if holidayObject.judgeJapaneseHoliday(year: targetYear, month: targetMonth, day: targetDay) {
-            return .image(UIImage(systemName: "calendar"), color: .orange, size: .medium)
+            return .image(UIImage(systemName: "flag.2.crossed.fill"), color: .orange, size: .medium)
         } else {
             return nil
         }
