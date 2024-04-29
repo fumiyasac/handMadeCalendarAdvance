@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name                  = "CalculateCalendarLogic"
   s.swift_versions        = '5.7'
-  s.version               = "0.7.0"
+  s.version               = "0.7.1"
   s.summary               = "This library CalculateCalendarLogic (sample project name is handMadeCalendarAdvance) can judge a holiday in Japan."
   s.description           = <<-DESC
                           This library 'CalculateCalendarLogic' can judge a holiday in Japan.
