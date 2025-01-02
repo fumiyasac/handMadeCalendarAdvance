@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,8 @@
 		31889D161E29F3BC00DFD4CB /* CalculateCalendarLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E517AF5A1CE0F63C006847A0 /* CalculateCalendarLogicTests.swift */; };
 		DE0166BC1CDE5892002BB133 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0166BB1CDE5892002BB133 /* CalendarCell.swift */; };
 		DE03CFF329608C650054BCF1 /* NewCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE03CFF229608C650054BCF1 /* NewCalendarViewController.swift */; };
+		DE4977542D26609200FEC950 /* DatePickerSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4977532D26609200FEC950 /* DatePickerSelectView.swift */; };
+		DE4977572D26635200FEC950 /* MijickCalendarView in Frameworks */ = {isa = PBXBuildFile; productRef = DE4977562D26635200FEC950 /* MijickCalendarView */; };
 		DE7396FA1CCB4EC100A9A222 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7396F91CCB4EC100A9A222 /* AppDelegate.swift */; };
 		DE7396FC1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7396FB1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift */; };
 		DE7396FF1CCB4EC100A9A222 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE7396FD1CCB4EC100A9A222 /* Main.storyboard */; };
@@ -94,6 +96,7 @@
 		31889D061E29F37F00DFD4CB /* CalculateCalendarLogic OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CalculateCalendarLogic OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE0166BB1CDE5892002BB133 /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		DE03CFF229608C650054BCF1 /* NewCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCalendarViewController.swift; sourceTree = "<group>"; };
+		DE4977532D26609200FEC950 /* DatePickerSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerSelectView.swift; sourceTree = "<group>"; };
 		DE7396F61CCB4EC100A9A222 /* handMadeCalendarAdvance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = handMadeCalendarAdvance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7396F91CCB4EC100A9A222 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE7396FB1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE4977572D26635200FEC950 /* MijickCalendarView in Frameworks */,
 				E517AF5F1CE0F63C006847A0 /* CalculateCalendarLogic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +253,7 @@
 				DE7396FB1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift */,
 				DEE369C2257C8E5A00A22800 /* DatePickerCalendarViewController.swift */,
 				DE03CFF229608C650054BCF1 /* NewCalendarViewController.swift */,
+				DE4977532D26609200FEC950 /* DatePickerSelectView.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -478,6 +483,9 @@
 				Base,
 			);
 			mainGroup = DE7396ED1CCB4EC100A9A222;
+			packageReferences = (
+				DE4977552D26618300FEC950 /* XCRemoteSwiftPackageReference "CalendarView" */,
+			);
 			productRefGroup = DE7396F71CCB4EC100A9A222 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -612,6 +620,7 @@
 				DEE369C3257C8E5A00A22800 /* DatePickerCalendarViewController.swift in Sources */,
 				DE03CFF329608C650054BCF1 /* NewCalendarViewController.swift in Sources */,
 				DE7396FC1CCB4EC100A9A222 /* MonthlyCalendarViewController.swift in Sources */,
+				DE4977542D26609200FEC950 /* DatePickerSelectView.swift in Sources */,
 				DE7396FA1CCB4EC100A9A222 /* AppDelegate.swift in Sources */,
 				DE0166BC1CDE5892002BB133 /* CalendarCell.swift in Sources */,
 				DEE369B4257C8A1600A22800 /* MainViewController.swift in Sources */,
@@ -721,7 +730,11 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = CalculateCalendarLogic/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.just1factory.CalculateCalendarLogic-OSX";
 				PRODUCT_NAME = CalculateCalendarLogic;
@@ -750,13 +763,18 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = CalculateCalendarLogic/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.just1factory.CalculateCalendarLogic-OSX";
 				PRODUCT_NAME = CalculateCalendarLogic;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -773,7 +791,11 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.just1factory.CalculateCalendarLogic-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -793,12 +815,17 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.just1factory.CalculateCalendarLogic-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -918,8 +945,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S5BF5553KY;
 				INFOPLIST_FILE = handMadeCalendarAdvance/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.handMadeCalendarAdvance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -933,8 +963,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S5BF5553KY;
 				INFOPLIST_FILE = handMadeCalendarAdvance/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.handMadeCalendarAdvance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -946,8 +979,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = handMadeCalendarAdvanceTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.handMadeCalendarAdvanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -960,8 +997,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = handMadeCalendarAdvanceTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.handMadeCalendarAdvanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -973,7 +1014,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = handMadeCalendarAdvanceUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.handMadeCalendarAdvanceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -985,7 +1030,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = handMadeCalendarAdvanceUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.handMadeCalendarAdvanceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1006,7 +1055,11 @@
 				INFOPLIST_FILE = CalculateCalendarLogic/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.CalculateCalendarLogic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1031,7 +1084,11 @@
 				INFOPLIST_FILE = CalculateCalendarLogic/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.CalculateCalendarLogic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1046,8 +1103,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.CalculateCalendarLogicTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1059,8 +1120,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = Tests/CalculateCalendarLogicTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.just1factory.CalculateCalendarLogicTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1144,6 +1209,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DE4977552D26618300FEC950 /* XCRemoteSwiftPackageReference "CalendarView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Mijick/CalendarView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DE4977562D26635200FEC950 /* MijickCalendarView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE4977552D26618300FEC950 /* XCRemoteSwiftPackageReference "CalendarView" */;
+			productName = MijickCalendarView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DE7396EE1CCB4EC100A9A222 /* Project object */;
 }
