@@ -1,0 +1,15 @@
+{
+  "originHash" : "95755beb3185c87b9d87ab36a12571768201613e7aea3bb2fbc1fa63c76b2ec2",
+  "pins" : [
+    {
+      "identity" : "calendarview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Mijick/CalendarView.git",
+      "state" : {
+        "revision" : "b347587ba39a023b61881158872db9d01a90a9a6",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}
