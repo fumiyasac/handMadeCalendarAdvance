@@ -29,7 +29,7 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 
 ### Requirements & Support
 
-+ iOS 13.0 or later
++ iOS 14.0 or later
 + macOS 11.0 or later
 
 ### Installation
@@ -43,7 +43,7 @@ Create Podfile and specify it in your Podfile:
 ★ Example of Podfile
 
 ```
-platform :ios, '13.0'
+platform :ios, '14.0'
 use_frameworks!
 target [YOUR PROJECT NAME]' do
   pod 'CalculateCalendarLogic'
@@ -156,7 +156,7 @@ public func judgeJapaneseHoliday(year: Int, month: Int, day: Int) -> Bool {
 
 ### 対応バージョンとサポート
 
-+ iOS 13.0 or later
++ iOS 14.0 or later
 + macOS 11.0 or later
 
 ### 導入方法
@@ -232,7 +232,7 @@ print("2016年1月1日：\(result)")
 
 現行プログラムでCalculateCalendarLogic.swiftで考慮したテストケースは下記の通りです。
 
-+ 今年(2016年〜2022年)の祝祭日の判定が正しく行えていること
++ 今年(2016年〜2025年)の祝祭日の判定が正しく行えていること
 + ゴールデンウィークの判定が正しく行えていること(※サンプル：2017年/2019年/2021年)
 + シルバーウィークの判定が正しく行えていること(※サンプル：2015年/2026年/2032年)
 + 春分の日・秋分の日の判定が正しく行えていること(※サンプル：2000年〜2030年)
@@ -247,6 +247,7 @@ print("2016年1月1日：\(result)")
 
 まだまだ甘い部分があるかもしれませんが、その際はPullRequest等を送っていただければ幸いです。アプリ開発の中でこのサンプルが少しでもお役にたつ事ができれば嬉しい限りです。
 
++ 2025.01.02: 保守対応を行いました。
 + 2023.01.01: 保守対応＆iOS16で利用可能なUICalendarViewのサンプル追加を行いました。
 + 2021.06.05: Gihub Actions追加（[uhooi](https://github.com/uhooi)様）
 + 2020.12.02: Xcode12.2への対応/2021年の祝日に関する追加対応/サンプルコード修正等を行いました。
